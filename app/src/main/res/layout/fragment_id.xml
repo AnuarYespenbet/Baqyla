@@ -35,10 +35,13 @@
             app:layout_constraintTop_toBottomOf="@id/logo" />
 
         <Button
+            android:id="@+id/next_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_rounded_btn"
+            android:foreground="?attr/selectableItemBackground"
+            android:enabled="false"
             android:text="next"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/id_edit" />

@@ -12,22 +12,28 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_idFragment"
-            app:destination="@id/idFragment" />
+            app:destination="@id/idFragment"
+            app:popUpTo="@+id/nav_graph" />
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/nav_graph" />
         <action
             android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/idFragment"
-        android:name="com.example.baqyla.IdFragment"
+        android:name="com.example.baqyla.id.IdFragment"
         android:label="IdFragment"
         tools:layout="@layout/fragment_id" >
         <action
             android:id="@+id/action_idFragment_to_passwordFragment"
             app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/action_idFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -36,7 +42,8 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -50,6 +57,7 @@
         tools:layout="@layout/fragment_password" >
         <action
             android:id="@+id/action_passwordFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
 </navigation>

@@ -1,14 +1,12 @@
 package com.example.baqyla
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment() {
     override fun onCreateView(
@@ -21,8 +19,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        GlobalScope.launch {
-            delay(1000)
+        Handler().postDelayed({
             when {
                 (activity as MainActivity).isFirstTime() -> {
                     findNavController().navigate(R.id.action_splashFragment_to_idFragment)
@@ -34,6 +31,6 @@ class SplashFragment : Fragment() {
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 }
             }
-        }
+        }, 1000)
     }
 }
