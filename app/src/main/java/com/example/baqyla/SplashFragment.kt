@@ -21,14 +21,11 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Handler().postDelayed({
             when {
-                (activity as MainActivity).isFirstTime() -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_idFragment)
-                }
                 (activity as MainActivity).isLoggedIn() -> {
                     findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
                 }
                 else -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    findNavController().navigate(R.id.action_splashFragment_to_idFragment)
                 }
             }
         }, 1000)

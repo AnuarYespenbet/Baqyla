@@ -2,7 +2,8 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,49 +12,129 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@drawable/bg_logo"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
+            android:id="@+id/brand"
+            style="@style/BrandStyle"
+            android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/success_register"
+            style="@style/WelcomeToBaqylaStyle"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="18dp"
+            android:text="Вы успешно зарегистрированы!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/brand" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="Войдите повторно для проверки"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/success_register" />
+
+        <TextView
+            android:id="@+id/id_number_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="Ваш логин"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description" />
 
         <EditText
             android:id="@+id/id_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="43dp"
             android:background="@drawable/bg_rounded_edit"
-            android:hint="id"
+            android:fontFamily="@font/rubik_regular"
+            android:hint="Введите номер своего ID"
+            android:paddingStart="8dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="13dp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+            android:textColorHint="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/id_number_desc" />
+
+        <TextView
+            android:id="@+id/password_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="Ваш пароль"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_edit" />
 
         <EditText
             android:id="@+id/password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="43dp"
             android:background="@drawable/bg_rounded_edit"
-            android:hint="password"
+            android:fontFamily="@font/rubik_regular"
+            android:hint="Введите пароль"
+            android:paddingStart="8dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="13dp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/id_edit" />
+            android:textColorHint="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/password_desc" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_rounded_btn"
-            android:text="next"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rubik_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Далее"
+            android:textAllCaps="false"
             android:textColor="@color/white"
+            app:backgroundTint="@color/green"
+            app:cornerRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_edit" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="© 2020 BAQYLA. Все права защищены."
+            android:textColor="#B1B1B1"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

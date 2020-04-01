@@ -37,4 +37,16 @@ class RetrofitClient {
     fun isUserExists(username: String): Observable<Response<ResponseBody>> {
         return baqylaApi.isUserExists(username)
     }
+
+    fun isPasswordExists(username: String): Observable<Response<ResponseBody>> {
+        return baqylaApi.isPasswordExists(username)
+    }
+
+    fun setPassword(data: HashMap<String, Any>): Observable<Response<ResponseBody>> {
+        return baqylaApi.setPassword(data)
+    }
+
+    fun login(username: String, password: String): Observable<Response<ResponseBody>> {
+        return baqylaApi.login(username, password)
+    }
 }

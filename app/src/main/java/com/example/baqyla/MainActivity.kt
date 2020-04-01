@@ -20,16 +20,16 @@ class MainActivity : AppCompatActivity() {
         return getPrefs().getBoolean(Constants.FIRST_TIME, true)
     }
 
-    fun setFirstTime() {
-        getPrefs().edit().putBoolean(Constants.FIRST_TIME, true).apply()
+    fun setFirstTime(firstTime: Boolean) {
+        getPrefs().edit().putBoolean(Constants.FIRST_TIME, firstTime).apply()
     }
 
     fun isLoggedIn(): Boolean {
         return getPrefs().getBoolean(Constants.LOGGED_IN, false)
     }
 
-    fun setLoggedIn() {
-        getPrefs().edit().putBoolean(Constants.LOGGED_IN, true).apply()
+    fun setLoggedIn(loggedIn: Boolean) {
+        getPrefs().edit().putBoolean(Constants.LOGGED_IN, loggedIn).apply()
     }
 
 }

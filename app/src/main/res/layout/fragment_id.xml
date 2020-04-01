@@ -1,51 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@drawable/bg_logo"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
+            android:id="@+id/brand"
+            style="@style/BrandStyle"
+            android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/welcome_to_baqyla"
+            style="@style/WelcomeToBaqylaStyle"
+            android:layout_marginTop="75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/brand" />
+
+        <TextView
+            android:id="@+id/enter_id_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="Пожалуйста введите ID для регистрации"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/welcome_to_baqyla" />
+
+        <TextView
+            android:id="@+id/id_number_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="27dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="Номер личного ID"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enter_id_desc" />
 
         <EditText
             android:id="@+id/id_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="43dp"
             android:background="@drawable/bg_rounded_edit"
-            android:hint="id"
+            android:fontFamily="@font/rubik_regular"
+            android:hint="Введите ваш ID"
+            android:padding="16dp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+            android:textColorHint="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/id_number_desc" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/next_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_rounded_btn"
-            android:foreground="?attr/selectableItemBackground"
-            android:enabled="false"
-            android:text="next"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rubik_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:textColor="@color/white"
+            android:text="Далее"
+            android:enabled="false"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/btn_states"
+            app:cornerRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/id_edit" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="© 2020 BAQYLA. Все права защищены."
+            android:textColor="#B1B1B1"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
