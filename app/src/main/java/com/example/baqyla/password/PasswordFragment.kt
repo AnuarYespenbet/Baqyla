@@ -1,5 +1,6 @@
 package com.example.baqyla.password
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.baqyla.BaseActivity
+import com.example.baqyla.NavigationActivity
 import com.example.baqyla.R
 import com.example.baqyla.toast
 import kotlinx.android.synthetic.main.fragment_password.*
@@ -66,7 +69,11 @@ class PasswordFragment : Fragment() {
             hashMap["password"] = password_edit.text.toString()
             viewModel.setPassword(hashMap).observe(this, Observer {
                 if (it) {
-                    findNavController().navigate(R.id.action_passwordFragment_to_loginFragment)
+                    (activity as BaseActivity).setLoggedIn(true)
+                    val intent = Intent(activity, NavigationActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    activity?.finish()
                 } else {
                     context?.toast("Ошибка")
                 }

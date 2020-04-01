@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:actionLayout="@layout/fragment_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/searchFragment"
+        android:actionLayout="@layout/fragment_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/syllabusFragment"
+        android:actionLayout="@layout/fragment_syllabus"
+        android:icon="@drawable/ic_syllabus"
+        android:title="Syllabus" />
+
+    <item
+        android:id="@+id/mailFragment"
+        android:actionLayout="@layout/fragment_mail"
+        android:icon="@drawable/ic_mail"
+        android:title="Mail" />
+
+</menu>

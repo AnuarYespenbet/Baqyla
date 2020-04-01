@@ -1,5 +1,6 @@
 package com.example.baqyla.data.net
 
+import com.example.baqyla.data.User
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -46,7 +47,7 @@ class RetrofitClient {
         return baqylaApi.setPassword(data)
     }
 
-    fun login(username: String, password: String): Observable<Response<ResponseBody>> {
+    fun login(username: String, password: String): Observable<Response<User>> {
         return baqylaApi.login(username, password)
     }
 }

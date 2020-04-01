@@ -18,10 +18,6 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@+id/nav_graph" />
-        <action
-            android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/idFragment"
@@ -39,34 +35,12 @@
         android:id="@+id/loginFragment"
         android:name="com.example.baqyla.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@+id/nav_graph" />
-    </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.baqyla.MainFragment"
-        android:label="MainFragment"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <argument
-            android:name="id"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/passwordFragment"
         android:name="com.example.baqyla.password.PasswordFragment"
         android:label="PasswordFragment"
         tools:layout="@layout/fragment_password" >
-        <action
-            android:id="@+id/action_passwordFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@+id/nav_graph" />
         <action
             android:id="@+id/action_passwordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

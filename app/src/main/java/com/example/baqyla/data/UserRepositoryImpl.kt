@@ -71,8 +71,8 @@ class UserRepositoryImpl : UserRepository {
         return data
     }
 
-    override fun login(username: String, password: String): LiveData<Boolean> {
-        val data = MutableLiveData<Boolean>()
+    override fun login(username: String, password: String): LiveData<User> {
+        val data = MutableLiveData<User>()
         disposables.add(
             retrofitClient.login(username, password)
                 .subscribeOn(Schedulers.io())
@@ -80,9 +80,9 @@ class UserRepositoryImpl : UserRepository {
                 .subscribe {
                     if (it.isSuccessful) {
                         Log.d(TAG, it.code().toString())
-                        data.value = true
+                        data.value = it.body()
                     } else {
-                        data.value = false
+                        data.value = null
                     }
                 }
         )

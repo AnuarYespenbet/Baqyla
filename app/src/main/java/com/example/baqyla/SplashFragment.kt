@@ -1,5 +1,6 @@
 package com.example.baqyla
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -22,7 +23,13 @@ class SplashFragment : Fragment() {
         Handler().postDelayed({
             when {
                 (activity as MainActivity).isLoggedIn() -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+                    (activity as BaseActivity).setLoggedIn(true)
+                    val intent = Intent(activity, NavigationActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    activity?.finish()
+
+                    //findNavController().navigate(R.id.action_splashFragment_to_idFragment)
                 }
                 else -> {
                     findNavController().navigate(R.id.action_splashFragment_to_idFragment)
