@@ -2,14 +2,21 @@ package com.example.baqyla.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.baqyla.*
+import com.example.baqyla.BaseActivity
+import com.example.baqyla.Constants
+import com.example.baqyla.NavigationActivity
+import com.example.baqyla.R
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
@@ -25,6 +32,27 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        id_edit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                setBgEdit(id_edit, p0?.length ?: 0)
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, count: Int) {}
+
+        })
+        password_edit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                setBgEdit(password_edit, p0?.length ?: 0)
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, count: Int) {}
+
+        })
 
         next_btn.setOnClickListener {
             val username = id_edit.text.toString()
@@ -43,5 +71,18 @@ class LoginFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun setBgEdit(view: View, count: Int) {
+        Log.d("count", count.toString())
+        val background =
+            if (count == 0) R.drawable.bg_rounded_edit_normal else R.drawable.bg_rounded_edit_focused
+        view.background = ContextCompat.getDrawable(context!!, background)
+        checkValid()
+    }
+
+    private fun checkValid() {
+        next_btn.isEnabled =
+            !id_edit.text.isNullOrEmpty() && !password_edit.text.isNullOrEmpty()
     }
 }

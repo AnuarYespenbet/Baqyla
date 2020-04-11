@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import com.bumptech.glide.Glide
 import com.example.baqyla.data.User
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -39,12 +41,46 @@ class HomeFragment : Fragment() {
         }
 
 
+        val subjects = ArrayList<Subject>()
+        subjects.add(Subject("Программирование", count = 10))
+        subjects.add(Subject("Рисование", count = 2))
+        subjects.add(Subject("Дзюдо", count = 12))
+        subjects.add(Subject("Танцы", count = 5))
+        subjects.add(Subject("Теннис", count = 8))
+        subjects.add(Subject("Шахматы", count = 4))
+        subjects.add(Subject("Плавание", count = 3))
 
-        /*val subjects = ArrayList<Subject>()
-        subjects.add(Subject("Программирование", active = true))
-        subjects.add(Subject("Рисование", active = false))
-        subjects.add(Subject("Дзюдо", active = false))
+        val tabs = tab_layout
+        tabs.setSelectedTabIndicator(R.drawable.bg_indicator)
+        val adapter =
+            AttendanceCountPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
 
-        subjects_rv.adapter = SubjectsAdapter(subjects)*/
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                view_pager.currentItem = tab?.position ?: 0
+            }
+
+        })
+
+        for (subject in subjects) {
+            tabs.addTab(tabs.newTab().setText(subject.name))
+            adapter.addFragment(AttendanceCountFragment.newInstance(subject.count))
+        }
+
+        view_pager.adapter = adapter
+        view_pager.addOnPageChangeListener(
+            TabLayout.TabLayoutOnPageChangeListener(
+                tab_layout
+            )
+        )
+
     }
 }
