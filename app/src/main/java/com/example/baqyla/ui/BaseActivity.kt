@@ -1,8 +1,9 @@
-package com.example.baqyla
+package com.example.baqyla.ui
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
+import com.example.baqyla.utils.Constants
 
 abstract class BaseActivity : AppCompatActivity() {
 

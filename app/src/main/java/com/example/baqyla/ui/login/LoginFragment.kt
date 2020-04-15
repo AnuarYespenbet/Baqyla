@@ -1,4 +1,4 @@
-package com.example.baqyla.login
+package com.example.baqyla.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.baqyla.BaseActivity
-import com.example.baqyla.Constants
-import com.example.baqyla.NavigationActivity
+import com.example.baqyla.ui.BaseActivity
+import com.example.baqyla.utils.Constants
+import com.example.baqyla.ui.NavigationActivity
 import com.example.baqyla.R
 import kotlinx.android.synthetic.main.fragment_login.*
 

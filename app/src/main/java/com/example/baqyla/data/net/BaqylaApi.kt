@@ -1,6 +1,6 @@
 package com.example.baqyla.data.net
 
-import com.example.baqyla.data.User
+import com.example.baqyla.data.models.User
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Response

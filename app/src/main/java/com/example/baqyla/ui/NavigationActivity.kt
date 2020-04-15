@@ -1,9 +1,10 @@
-package com.example.baqyla
+package com.example.baqyla.ui
 
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.baqyla.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NavigationActivity : BaseActivity() {

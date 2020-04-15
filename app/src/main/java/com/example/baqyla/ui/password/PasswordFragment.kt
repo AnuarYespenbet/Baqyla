@@ -1,4 +1,4 @@
-package com.example.baqyla.password
+package com.example.baqyla.ui.password
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,10 +13,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.baqyla.BaseActivity
-import com.example.baqyla.NavigationActivity
+import com.example.baqyla.ui.BaseActivity
+import com.example.baqyla.ui.NavigationActivity
 import com.example.baqyla.R
-import com.example.baqyla.toast
+import com.example.baqyla.utils.toast
 import kotlinx.android.synthetic.main.fragment_password.*
 
 class PasswordFragment : Fragment() {

@@ -1,6 +1,7 @@
-package com.example.baqyla
+package com.example.baqyla.ui
 
 import android.os.Bundle
+import com.example.baqyla.R
 
 class MainActivity : BaseActivity() {
 

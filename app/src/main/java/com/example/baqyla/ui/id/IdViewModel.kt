@@ -1,4 +1,4 @@
-package com.example.baqyla.id
+package com.example.baqyla.ui.id
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

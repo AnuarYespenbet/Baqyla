@@ -1,4 +1,4 @@
-package com.example.baqyla.data
+package com.example.baqyla.data.models
 
 import java.io.Serializable
 

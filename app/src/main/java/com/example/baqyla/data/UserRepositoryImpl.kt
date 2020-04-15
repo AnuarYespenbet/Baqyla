@@ -3,6 +3,7 @@ package com.example.baqyla.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.baqyla.data.models.User
 import com.example.baqyla.data.net.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

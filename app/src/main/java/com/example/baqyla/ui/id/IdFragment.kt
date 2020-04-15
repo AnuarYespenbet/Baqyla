@@ -1,4 +1,4 @@
-package com.example.baqyla.id
+package com.example.baqyla.ui.id
 
 import android.os.Bundle
 import android.text.Editable
@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.baqyla.R
-import com.example.baqyla.toast
+import com.example.baqyla.utils.toast
 import kotlinx.android.synthetic.main.fragment_id.*
 
 class IdFragment : Fragment() {

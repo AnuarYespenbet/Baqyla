@@ -1,10 +1,11 @@
-package com.example.baqyla
+package com.example.baqyla.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.baqyla.R
 
 class SyllabusFragment : Fragment() {
     override fun onCreateView(

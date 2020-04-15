@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.baqyla.SplashFragment"
+        android:name="com.example.baqyla.ui.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/idFragment"
-        android:name="com.example.baqyla.id.IdFragment"
+        android:name="com.example.baqyla.ui.id.IdFragment"
         android:label="IdFragment"
         tools:layout="@layout/fragment_id" >
         <action
@@ -33,12 +33,12 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.baqyla.login.LoginFragment"
+        android:name="com.example.baqyla.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/passwordFragment"
-        android:name="com.example.baqyla.password.PasswordFragment"
+        android:name="com.example.baqyla.ui.password.PasswordFragment"
         android:label="PasswordFragment"
         tools:layout="@layout/fragment_password" >
         <action

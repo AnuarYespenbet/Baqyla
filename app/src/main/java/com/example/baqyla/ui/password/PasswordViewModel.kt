@@ -1,4 +1,4 @@
-package com.example.baqyla.password
+package com.example.baqyla.ui.password
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

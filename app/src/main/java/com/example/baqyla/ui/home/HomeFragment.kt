@@ -1,4 +1,4 @@
-package com.example.baqyla
+package com.example.baqyla.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import com.bumptech.glide.Glide
-import com.example.baqyla.data.User
+import com.example.baqyla.ui.attendance.AttendanceCountFragment
+import com.example.baqyla.ui.attendance.AttendanceCountPagerAdapter
+import com.example.baqyla.R
+import com.example.baqyla.data.models.User
+import com.example.baqyla.data.models.Subject
+import com.example.baqyla.utils.Constants
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -53,7 +58,10 @@ class HomeFragment : Fragment() {
         val tabs = tab_layout
         tabs.setSelectedTabIndicator(R.drawable.bg_indicator)
         val adapter =
-            AttendanceCountPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+            AttendanceCountPagerAdapter(
+                childFragmentManager,
+                BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            )
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -72,7 +80,11 @@ class HomeFragment : Fragment() {
 
         for (subject in subjects) {
             tabs.addTab(tabs.newTab().setText(subject.name))
-            adapter.addFragment(AttendanceCountFragment.newInstance(subject.count))
+            adapter.addFragment(
+                AttendanceCountFragment.newInstance(
+                    subject.count
+                )
+            )
         }
 
         view_pager.adapter = adapter

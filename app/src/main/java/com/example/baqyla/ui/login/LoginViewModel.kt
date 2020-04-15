@@ -1,8 +1,8 @@
-package com.example.baqyla.login
+package com.example.baqyla.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.baqyla.data.User
+import com.example.baqyla.data.models.User
 import com.example.baqyla.data.UserRepository
 import com.example.baqyla.data.UserRepositoryImpl
 

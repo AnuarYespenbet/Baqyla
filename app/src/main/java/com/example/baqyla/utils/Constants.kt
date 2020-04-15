@@ -1,4 +1,4 @@
-package com.example.baqyla
+package com.example.baqyla.utils
 
 object Constants {
     const val FIRST_TIME = "first_time"

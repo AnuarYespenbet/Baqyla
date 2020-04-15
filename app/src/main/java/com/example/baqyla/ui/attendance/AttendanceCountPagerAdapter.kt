@@ -1,4 +1,4 @@
-package com.example.baqyla
+package com.example.baqyla.ui.attendance
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
