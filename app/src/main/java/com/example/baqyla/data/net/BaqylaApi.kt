@@ -1,5 +1,6 @@
 package com.example.baqyla.data.net
 
+import com.example.baqyla.data.models.LessonsResponse
 import com.example.baqyla.data.models.User
 import io.reactivex.Observable
 import okhttp3.ResponseBody
@@ -24,4 +25,11 @@ interface BaqylaApi {
         @Field("username") username: String,
         @Field("password") password: String
     ): Observable<Response<User>>
+
+    @GET("/lessons/get")
+    fun getLessons(
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String,
+        @Query("subjectId") subjectId: Int
+    ): Observable<Response<List<LessonsResponse>>>
 }

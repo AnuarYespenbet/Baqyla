@@ -71,7 +71,7 @@
             android:layout_marginTop="21dp"
             android:layout_marginBottom="21dp"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/anuar_yespenbet"
+            android:text="@string/bekaidar_sultanbek"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -133,8 +133,20 @@
             android:text="@string/late"
             android:textColor="@color/grey"
             android:textSize="12sp" />
-
-
     </LinearLayout>
+
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        app:layout_constraintTop_toBottomOf="@id/attendance_container" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lessons_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/calendar_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

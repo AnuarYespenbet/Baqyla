@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-import com.bumptech.glide.Glide
 import com.example.baqyla.R
 import com.example.baqyla.data.models.Subject
 import com.example.baqyla.data.models.User
@@ -37,10 +36,10 @@ class HomeFragment : Fragment() {
                     val child = user.children[0]
                     name.text = child.name
 
-                    Glide.with(context!!)
+                    /*Glide.with(context!!)
                         .load(child.profilePhoto)
                         .centerCrop()
-                        .into(image)
+                        .into(image)*/
 
                     subjects = child.subjects as ArrayList<Subject>
                 }

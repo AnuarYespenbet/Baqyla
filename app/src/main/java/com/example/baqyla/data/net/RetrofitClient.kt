@@ -1,5 +1,6 @@
 package com.example.baqyla.data.net
 
+import com.example.baqyla.data.models.LessonsResponse
 import com.example.baqyla.data.models.User
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -21,8 +22,13 @@ class RetrofitClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
+
         val builder = OkHttpClient.Builder()
-        val okHttpClient = builder.addInterceptor(httpLoggingInterceptor).build()
+        val okHttpClient = builder
+            .addInterceptor(httpLoggingInterceptor)
+            .addNetworkInterceptor(AddCookiesInterceptor())
+            .addNetworkInterceptor(ReceivedCookiesInterceptor())
+            .build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -49,5 +55,13 @@ class RetrofitClient {
 
     fun login(username: String, password: String): Observable<Response<User>> {
         return baqylaApi.login(username, password)
+    }
+
+    fun getLessons(
+        dateFrom: String,
+        dateTo: String,
+        subjectId: Int
+    ): Observable<Response<List<LessonsResponse>>> {
+        return baqylaApi.getLessons(dateFrom, dateTo, subjectId)
     }
 }
