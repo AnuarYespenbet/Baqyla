@@ -102,6 +102,8 @@
         app:tabMode="scrollable"
         app:tabPaddingEnd="16dp"
         app:tabPaddingStart="16dp"
+        app:tabSelectedTextColor="@color/green"
+        app:tabTextColor="@color/grey"
         app:tabTextAppearance="@style/TabLayoutTextStyle" />
 
     <androidx.viewpager.widget.ViewPager
