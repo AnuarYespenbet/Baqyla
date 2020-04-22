@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Baqyla</string>
     <string name="welcome_to_baqyla">Добро пожаловать в Baqyla!</string>
+    <string name="anuar_yespenbet">Ануар Еспенбет</string>
+    <string name="calendar">Календарь занятий</string>
+    <string name="not_late">Не опоздал</string>
+    <string name="did_not_come">Не пришел</string>
+    <string name="late">Опоздал</string>
 </resources>

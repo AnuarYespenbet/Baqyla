@@ -1,4 +1,4 @@
-package com.example.baqyla.ui
+package com.example.baqyla.ui.syllabus
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -39,35 +39,102 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/user_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_rounded_edit_focused"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/brand">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_circle_image"
+            android:scaleType="center"
+            android:src="@drawable/ic_camera2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="@string/anuar_yespenbet"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/schedule_title"
+        android:id="@+id/calendar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="26dp"
         android:fontFamily="@font/noto_sans_regular"
-        android:text="Расписание занятий"
+        android:text="@string/calendar"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/brand" />
+        app:layout_constraintTop_toBottomOf="@id/user_container" />
 
-    <TextView
-        android:id="@+id/schedule_desc"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/attendance_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="23dp"
-        android:fontFamily="@font/noto_sans_medium"
-        android:text="Выберите ребенка, чтобы посмотреть его календарь занятий"
-        android:textAlignment="center"
-        android:textColor="@color/grey"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_title" />
+        android:layout_marginTop="21dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/calendar_title">
+
+        <TextView
+            android:id="@+id/not_late"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_green_circle"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="@string/not_late"
+            android:textColor="@color/grey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/did_not_come"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:drawableStart="@drawable/ic_red_circle"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="@string/did_not_come"
+            android:textColor="@color/grey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/late"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:drawableStart="@drawable/ic_orange_circle"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="@string/late"
+            android:textColor="@color/grey"
+            android:textSize="12sp" />
 
 
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
