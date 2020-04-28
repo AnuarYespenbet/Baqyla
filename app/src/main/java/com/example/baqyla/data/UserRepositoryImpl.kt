@@ -78,14 +78,16 @@ class UserRepositoryImpl : UserRepository {
             retrofitClient.login(username, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
+                .subscribe({
                     if (it.isSuccessful) {
                         Log.d(TAG, it.code().toString())
                         data.value = it.body()
                     } else {
                         data.value = null
                     }
-                }
+                }, {
+                    Log.e(TAG, it.message ?: "error")
+                })
         )
         return data
     }

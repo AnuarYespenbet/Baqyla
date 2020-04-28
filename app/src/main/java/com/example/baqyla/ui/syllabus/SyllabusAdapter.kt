@@ -6,16 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baqyla.R
 import com.example.baqyla.data.models.LessonsResponse
+import com.example.baqyla.utils.getColorCompat
 import kotlinx.android.synthetic.main.row_item_syllabus.view.*
+import org.threeten.bp.format.DateTimeFormatter
 
 class SyllabusAdapter : RecyclerView.Adapter<SyllabusAdapter.ViewHolder>() {
 
-    private var items: List<LessonsResponse> = ArrayList()
-
-    fun setItems(items: List<LessonsResponse>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
+    val lessons = mutableListOf<LessonsResponse>()
+    private val formatter = DateTimeFormatter.ofPattern("EEE'\n'dd MMM'\n'HH:mm")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -24,20 +22,19 @@ class SyllabusAdapter : RecyclerView.Adapter<SyllabusAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
+        val item = lessons[position]
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = lessons.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: LessonsResponse) {
-            itemView.start_time.text = item.startTime
-            itemView.end_time.text = item.endTime
+            itemView.start_time.text = formatter.format(item.dateTime)
+            itemView.end_time.text = formatter.format(item.dateTime)
+            itemView.divider.setBackgroundColor(itemView.context.getColorCompat(item.color))
+            itemView.subject_name.setTextColor(itemView.context.getColorCompat(item.color))
             itemView.subject_name.text = item.subject.name
-            itemView.teacher_name.text = item.subject.teacher
         }
 
     }
