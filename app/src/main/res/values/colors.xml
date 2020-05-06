@@ -16,4 +16,8 @@
     <color name="lesson_red">#D8042F</color>
     <color name="lesson_green">#4ED804</color>
     <color name="lesson_yellow">#F8D802</color>
+
+    <color name="attendance_green">#1CD67D</color>
+    <color name="attendance_red">#F00909</color>
+    <color name="attendance_orange">#FFA41C</color>
 </resources>

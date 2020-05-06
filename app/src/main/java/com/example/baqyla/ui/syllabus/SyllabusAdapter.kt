@@ -13,7 +13,7 @@ import org.threeten.bp.format.DateTimeFormatter
 class SyllabusAdapter : RecyclerView.Adapter<SyllabusAdapter.ViewHolder>() {
 
     val lessons = mutableListOf<LessonsResponse>()
-    private val formatter = DateTimeFormatter.ofPattern("EEE'\n'dd MMM'\n'HH:mm")
+    private val formatter = DateTimeFormatter.ofPattern("HH:mm")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =

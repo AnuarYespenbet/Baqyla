@@ -9,10 +9,7 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.baqyla.R
-import com.example.baqyla.utils.daysOfWeekFromLocale
-import com.example.baqyla.utils.generateLessons
-import com.example.baqyla.utils.getColorCompat
-import com.example.baqyla.utils.setTextColorRes
+import com.example.baqyla.utils.*
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -26,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_syllabus.*
 import kotlinx.android.synthetic.main.item_calendar_day.view.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.YearMonth
-import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.TextStyle
 import java.util.*
 
@@ -34,7 +30,7 @@ class SyllabusFragment : Fragment() {
     private var selectedDate: LocalDate? = null
     private val lessonsAdapter = SyllabusAdapter()
     private val lessons = generateLessons().groupBy { it.dateTime?.toLocalDate() }
-    private val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
+    private val today = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +54,6 @@ class SyllabusFragment : Fragment() {
         lessonsAdapter.notifyDataSetChanged()
 
         val daysOfWeek = daysOfWeekFromLocale()
-
         val currentMonth = YearMonth.now()
         calendar_view.setup(
             currentMonth.minusMonths(10),
@@ -70,7 +65,10 @@ class SyllabusFragment : Fragment() {
         class DayViewContainer(view: View) : ViewContainer(view) {
             lateinit var day: CalendarDay
             val textView = view.day_text
-            val layout = view.day_container
+            val dayBackground: View = view.day_background
+            val dayTopBackground: View = view.day_top_background
+            val dayBottomBackground: View = view.day_bottom_background
+            val dotView: View = view.dot_view
 
             init {
                 view.setOnClickListener {
@@ -91,20 +89,93 @@ class SyllabusFragment : Fragment() {
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.day = day
                 val textView = container.textView
-                val layout = container.layout
                 textView.text = day.date.dayOfMonth.toString()
 
-                if (day.owner == DayOwner.THIS_MONTH) {
-                    textView.setTextColorRes(R.color.black)
-                    layout.setBackgroundResource(if (selectedDate == day.date) R.drawable.selected_day else 0)
+                val dayBackground = container.dayBackground
+                val dayTopBackground = container.dayTopBackground
+                val dayBottomBackground = container.dayBottomBackground
+                val dotView = container.dotView
 
+                if (day.owner == DayOwner.THIS_MONTH) {
                     val lessonsOnDay = lessons[day.date]
-                    if (lessonsOnDay != null) {
-                        layout.setBackgroundColor(view.context.getColorCompat(lessonsOnDay[0].color))
+                    when {
+                        today == day.date -> {
+                            textView.setTextColorRes(R.color.white)
+                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.green))
+                            dayBackground.visible()
+                            dayTopBackground.invisible()
+                            dayBottomBackground.invisible()
+                        }
+                        lessonsOnDay != null -> {
+                            textView.setTextColorRes(R.color.white)
+                            if (lessonsOnDay.size == 1) {
+                                dayBackground.background.setTint(
+                                    requireContext().getColorCompat(
+                                        lessonsOnDay[0].color
+                                    )
+                                )
+                                dotView.background.setTint(
+                                    requireContext().getColorCompat(
+                                        lessonsOnDay[0].attendanceColor
+                                    )
+                                )
+                                dayBackground.visible()
+                                dayTopBackground.invisible()
+                                dayBottomBackground.invisible()
+                            } else if (lessonsOnDay.size == 2) {
+                                dayTopBackground.background.setTint(
+                                    requireContext().getColorCompat(
+                                        lessonsOnDay[0].color
+                                    )
+                                )
+                                dayBottomBackground.background.setTint(
+                                    requireContext().getColorCompat(
+                                        lessonsOnDay[1].color
+                                    )
+                                )
+                                dotView.background.setTint(
+                                    requireContext().getColorCompat(
+                                        lessonsOnDay[0].attendanceColor
+                                    )
+                                )
+                                dayBackground.invisible()
+                                dayTopBackground.visible()
+                                dayBottomBackground.visible()
+                            }
+                        }
+                        selectedDate == day.date -> {
+                            textView.setTextColorRes(R.color.white)
+                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.grey))
+                            dayBackground.visible()
+                            dayTopBackground.invisible()
+                            dayBottomBackground.invisible()
+
+                            dotView.background.setTint(
+                                requireContext().getColorCompat(
+                                    R.color.white
+                                )
+                            )
+                        }
+                        else -> {
+                            textView.setTextColorRes(R.color.black)
+                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.white))
+                            dayBackground.visible()
+                            dayTopBackground.invisible()
+                            dayBottomBackground.invisible()
+
+                            dotView.background.setTint(
+                                requireContext().getColorCompat(
+                                    R.color.white
+                                )
+                            )
+                        }
                     }
                 } else {
-                    //textView.setTextColorRes(R.color.grey)
-                    layout.background = null
+                    textView.invisible()
+                    dayBackground.invisible()
+                    dayTopBackground.invisible()
+                    dayBottomBackground.invisible()
+                    dotView.invisible()
                 }
             }
 
@@ -134,7 +205,8 @@ class SyllabusFragment : Fragment() {
         }
 
         calendar_view.monthScrollListener = { month ->
-            val title = "${monthTitleFormatter.format(month.yearMonth)}, ${month.yearMonth.year}"
+            val title =
+                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${selectedDate?.dayOfMonth ?: today.dayOfMonth}"
             month_and_year.text = title
 
             selectedDate?.let {

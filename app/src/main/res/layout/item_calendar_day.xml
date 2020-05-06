@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/day_container"
-    android:layout_width="20dp"
-    android:layout_height="20dp"
-    android:background="@drawable/selected_day">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/day_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/noto_sans_regular"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        tools:text="7" />
+    <FrameLayout
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center">
+
+        <View
+            android:id="@+id/day_top_background"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="top"
+            android:background="@drawable/bg_rounded_top" />
+
+        <View
+            android:id="@+id/day_bottom_background"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_rounded_bottom" />
+
+        <View
+            android:id="@+id/day_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/day_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:text="7" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/dot_view"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/bg_circle" />
 
 </FrameLayout>
