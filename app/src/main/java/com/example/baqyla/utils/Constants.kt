@@ -7,4 +7,8 @@ object Constants {
     const val USER = "user"
 
     const val DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm"
+
+    const val NOT_LATE = "not_late"
+    const val DID_NOT_COME = "did_not_come"
+    const val LATE = "late"
 }

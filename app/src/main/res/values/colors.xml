@@ -2,12 +2,24 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorAccentDisabled">#F1C8D7</color>
+    <color name="colorAccent">@color/green</color>
+
     <color name="black">#242423</color>
     <color name="white">#FFFFFF</color>
-    <color name="green">#00C092</color>
+    <color name="green">#00B869</color>
     <color name="green_disabled">#B347B198</color>
     <color name="grey">#B1B1B1</color>
     <color name="light_grey">#CBCBCB</color>
+    <color name="background_grey">#EEEEEE</color>
+    <color name="text_grey">#A1A2A1</color>
+
+    <color name="lesson_orange">#FFA41C</color>
+    <color name="lesson_blue">#19B7DA</color>
+    <color name="lesson_red">#D8042F</color>
+    <color name="lesson_green">#4ED804</color>
+    <color name="lesson_yellow">#F8D802</color>
+
+    <color name="attendance_green">#1CD67D</color>
+    <color name="attendance_red">#F00909</color>
+    <color name="attendance_orange">#FFA41C</color>
 </resources>
