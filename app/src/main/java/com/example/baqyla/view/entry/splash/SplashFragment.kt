@@ -27,6 +27,7 @@ class SplashFragment : Fragment() {
         when {
             splashViewModel.user != null -> {
                 startActivity(Intent(requireContext(), NavigationActivity::class.java))
+                activity?.finish()
             }
             splashViewModel.id != null -> {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)

@@ -72,4 +72,11 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="ProfileField">
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
 </resources>

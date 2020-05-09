@@ -111,3 +111,7 @@ fun dpToPx(dp: Int, context: Context): Int =
         TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(),
         context.resources.displayMetrics
     ).toInt()
+
+fun birthdayFromArrayToString(list: List<Int>): String {
+    return "${list[2]}.${list[1]}.${list[0]}"
+}

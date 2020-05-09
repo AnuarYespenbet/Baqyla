@@ -28,4 +28,7 @@
     <string name="enter_again">Введите повторно</string>
     <string name="back">Назад</string>
     <string name="change_id">Сменить ID</string>
+    <string name="info_child">Сведения о ребенке</string>
+    <string name="choose_subject">Выберите занятие чтобы посмотреть данные</string>
+    <string name="attendance_percent">Процент посещаемости занятий за все время</string>
 </resources>

@@ -28,10 +28,16 @@ interface BaqylaService {
         @Field("password") password: String
     ): Single<User>
 
+    @GET("/lessons/get-with-period")
+    fun getAllLessons(
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String
+    ): Observable<List<Lesson>>
+
     @GET("/lessons/get")
-    fun getLessons(
+    fun getLessonsByChildId(
         @Query("dateFrom") dateFrom: String,
         @Query("dateTo") dateTo: String,
-        @Query("subjectId") subjectId: Int
+        @Query("childId") childId: Int
     ): Observable<List<Lesson>>
 }

@@ -5,7 +5,15 @@ import com.example.baqyla.data.remote.BaqylaService
 import io.reactivex.Observable
 
 class LessonsRepository(private val webService: BaqylaService) {
-    fun getLessons(dateFrom: String, dateTo: String, subjectId: Int): Observable<List<Lesson>> {
-        return webService.getLessons(dateFrom, dateTo, subjectId)
+    fun getAllLessons(dateFrom: String, dateTo: String): Observable<List<Lesson>> {
+        return webService.getAllLessons(dateFrom, dateTo)
+    }
+
+    fun getLessonsByChildId(
+        dateFrom: String,
+        dateTo: String,
+        childId: Int
+    ): Observable<List<Lesson>> {
+        return webService.getLessonsByChildId(dateFrom, dateTo, childId)
     }
 }

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.baqyla.data.local.LocalStore
 import com.example.baqyla.data.local.LocalStoreStringType
-import com.example.baqyla.data.remote.NetworkService
 import com.example.baqyla.data.remote.response.ExistPassword
 import com.example.baqyla.data.remote.response.ExistUser
 import com.example.baqyla.data.repository.UserRepository
@@ -14,13 +13,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class IdViewModel : BaseViewModel() {
-    private val networkService = NetworkService
-    private val api = networkService.createApiService()
     private val repository = UserRepository(api)
 
     fun isUserExists(id: String): LiveData<Event<ExistUser>> {
         val liveData = MutableLiveData<Event<ExistUser>>()
-        compositeDisposable.add(
+        addDisposable(
             repository.isUserExists(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -38,7 +35,7 @@ class IdViewModel : BaseViewModel() {
 
     fun isPasswordExists(id: String): LiveData<Event<ExistPassword>> {
         val liveData = MutableLiveData<Event<ExistPassword>>()
-        compositeDisposable.add(
+        addDisposable(
             repository.isPasswordExists(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

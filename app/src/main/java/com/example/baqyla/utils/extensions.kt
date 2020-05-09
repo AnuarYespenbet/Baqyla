@@ -2,10 +2,13 @@ package com.example.baqyla.utils
 
 import android.content.Context
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.example.baqyla.R
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -27,3 +30,10 @@ internal fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getCol
 
 internal fun TextView.setTextColorRes(@ColorRes color: Int) =
     setTextColor(context.getColorCompat(color))
+
+fun ImageView.loadUrl(url: String?) {
+    Glide.with(this)
+        .load(url)
+        .placeholder(R.drawable.ic_person_outline_black_24dp)
+        .into(this)
+}

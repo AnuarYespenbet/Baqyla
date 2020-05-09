@@ -83,4 +83,7 @@ dependencies {
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    //circle image view
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
 }

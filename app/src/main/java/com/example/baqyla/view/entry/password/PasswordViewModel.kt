@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.baqyla.data.local.LocalStore
 import com.example.baqyla.data.local.LocalStoreStringType
-import com.example.baqyla.data.remote.NetworkService
 import com.example.baqyla.data.repository.UserRepository
 import com.example.baqyla.utils.Event
 import com.example.baqyla.view.base.BaseViewModel
@@ -13,8 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 
 class PasswordViewModel : BaseViewModel() {
-    private val networkService = NetworkService
-    private val api = networkService.createApiService()
     private val repository = UserRepository(api)
 
     fun saveId(userId: String) {
@@ -23,7 +20,7 @@ class PasswordViewModel : BaseViewModel() {
 
     fun setPassword(hashMap: HashMap<String, Any>): LiveData<Event<ResponseBody>> {
         val liveData = MutableLiveData<Event<ResponseBody>>()
-        compositeDisposable.add(
+        addDisposable(
             repository.setPassword(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

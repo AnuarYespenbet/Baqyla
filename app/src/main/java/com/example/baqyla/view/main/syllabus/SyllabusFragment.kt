@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.baqyla.R
+import com.example.baqyla.data.model.Child
+import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.*
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -27,10 +31,13 @@ import org.threeten.bp.format.TextStyle
 import java.util.*
 
 class SyllabusFragment : Fragment() {
+    private lateinit var syllabusViewModel: SyllabusViewModel
     private var selectedDate: LocalDate? = null
     private val lessonsAdapter = SyllabusAdapter()
     private val lessons = generateLessons().groupBy { it.dateTime?.toLocalDate() }
     private val today = LocalDate.now()
+    private var user: User? = null
+    private var child: Child? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,14 +49,21 @@ class SyllabusFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        syllabusViewModel = ViewModelProvider(this).get(SyllabusViewModel::class.java)
+        user = syllabusViewModel.user
+        child = user?.children?.get(0)
+        child_name.text = child?.name
+
+        val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.divider_item_decoration
+            )!!
+        )
         lessons_rv.apply {
             adapter = lessonsAdapter
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+            addItemDecoration(itemDecoration)
         }
         lessonsAdapter.notifyDataSetChanged()
 
@@ -61,6 +75,8 @@ class SyllabusFragment : Fragment() {
             daysOfWeek.first()
         )
         calendar_view.scrollToMonth(currentMonth)
+        val firstDay = currentMonth.atDay(1)
+        val lastDay = currentMonth.atEndOfMonth()
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             lateinit var day: CalendarDay
