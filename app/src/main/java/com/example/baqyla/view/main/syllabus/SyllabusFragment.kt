@@ -23,6 +23,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import kotlinx.android.synthetic.main.calendar_day_legend.view.*
+import kotlinx.android.synthetic.main.layout_child.*
 import kotlinx.android.synthetic.main.fragment_syllabus.*
 import kotlinx.android.synthetic.main.item_calendar_day.view.*
 import org.threeten.bp.LocalDate

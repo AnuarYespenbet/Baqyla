@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         child?.apply {
             val fullName = "$name $surname"
             name_text.text = fullName
-            image.loadUrl(profilePhoto)
+            //image.loadUrl(profilePhoto)
             birthday_text.text = birthday?.let { birthdayFromArrayToString(it) }
             phone_text.text = phone
             address_text.text = address
