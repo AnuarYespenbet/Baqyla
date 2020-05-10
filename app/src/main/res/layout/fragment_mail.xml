@@ -70,6 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/additional_field_description" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/send_btn"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="37dp"
@@ -77,4 +78,14 @@
         android:text="@string/send_message"
         android:enabled="false"
         app:layout_constraintTop_toBottomOf="@id/additional_field_edit" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/send_btn"
+        app:layout_constraintEnd_toEndOf="@id/send_btn"
+        app:layout_constraintStart_toStartOf="@id/send_btn"
+        app:layout_constraintTop_toTopOf="@id/send_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,4 +38,6 @@
     <string name="additional_field">Поле для дополнительного ввода текста</string>
     <string name="enter_message">Введите сообщение</string>
     <string name="send_message">Отправить сообщение</string>
+    <string name="close">Закрыть</string>
+    <string name="message_accepted">Cпасибо ваше сообщение принято !</string>
 </resources>

@@ -8,6 +8,7 @@ import com.example.baqyla.data.model.Subject
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.YearMonth
 import org.threeten.bp.temporal.WeekFields
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun generateLessons(): List<Lesson> {
@@ -17,45 +18,38 @@ fun generateLessons(): List<Lesson> {
     val currentMonth17 = currentMonth.atDay(17)
     list.add(
         Lesson(
-            currentMonth17.atTime(9, 0),
+            time = currentMonth17.atTime(9, 0),
             subject = Subject(name = "android"), color = R.color.lesson_orange,
-            attendance = Constants.NOT_LATE
-        )
-    )
-    list.add(
-        Lesson(
-            currentMonth17.atTime(10, 0),
-            subject = Subject(name = "math"), color = R.color.lesson_blue,
-            attendance = Constants.DID_NOT_COME
+            attendance = Constants.NONE
         )
     )
 
     val currentMonth22 = currentMonth.atDay(22)
     list.add(
         Lesson(
-            currentMonth22.atTime(11, 0),
-            subject = Subject(name = "iOS"), color = R.color.lesson_green,
-            attendance = Constants.LATE
+            time = currentMonth22.atTime(11, 0),
+            subject = Subject(name = "android"), color = R.color.lesson_orange,
+            attendance = Constants.NONE
         )
     )
     list.add(
         Lesson(
-            currentMonth22.atTime(10, 0),
-            subject = Subject(name = "backend"), color = R.color.lesson_red,
-            attendance = Constants.NOT_LATE
+            time = currentMonth22.atTime(15, 0),
+            subject = Subject(name = "math"), color = R.color.lesson_blue,
+            attendance = Constants.NONE
         )
     )
 
     list.add(
         Lesson(
-            currentMonth.atDay(3).atTime(11, 0),
-            subject = Subject(name = "frontend"), color = R.color.lesson_yellow,
+            time = currentMonth.atDay(3).atTime(11, 0),
+            subject = Subject(name = "math"), color = R.color.lesson_blue,
             attendance = Constants.NOT_LATE
         )
     )
     list.add(
         Lesson(
-            currentMonth.atDay(7).atTime(10, 0),
+            time = currentMonth.atDay(7).atTime(10, 0),
             subject = Subject(name = "android"), color = R.color.lesson_orange,
             attendance = Constants.DID_NOT_COME
         )
@@ -64,16 +58,16 @@ fun generateLessons(): List<Lesson> {
     val nextMonth13 = currentMonth.plusMonths(1).atDay(13)
     list.add(
         Lesson(
-            nextMonth13.atTime(10, 0),
-            subject = Subject(name = "ios"), color = R.color.lesson_green,
-            attendance = Constants.LATE
+            time = nextMonth13.atTime(10, 0),
+            subject = Subject(name = "math"), color = R.color.lesson_blue,
+            attendance = Constants.NONE
         )
     )
     list.add(
         Lesson(
-            nextMonth13.atTime(15, 0),
-            subject = Subject(name = "backend"), color = R.color.lesson_blue,
-            attendance = Constants.NOT_LATE
+            time = nextMonth13.atTime(15, 0),
+            subject = Subject(name = "android"), color = R.color.lesson_orange,
+            attendance = Constants.NONE
         )
     )
     return list
@@ -114,4 +108,9 @@ fun dpToPx(dp: Int, context: Context): Int =
 
 fun birthdayFromArrayToString(list: List<Int>): String {
     return "${list[2]}.${list[1]}.${list[0]}"
+}
+
+fun getDayMonthYearWithDots(dateTime: String): String {
+    val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale("ru")).parse(dateTime)
+    return SimpleDateFormat("dd.MM.yyyy", Locale("ru")).format(date!!)
 }
