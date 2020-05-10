@@ -52,7 +52,10 @@ class SyllabusFragment : Fragment() {
         syllabusViewModel = ViewModelProvider(this).get(SyllabusViewModel::class.java)
         user = syllabusViewModel.user
         child = user?.children?.get(0)
-        child_name.text = child?.name
+        child?.apply {
+            val fullName = "$name $surname"
+            child_name.text = fullName
+        }
 
         val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(

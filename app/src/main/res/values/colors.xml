@@ -12,6 +12,7 @@
     <color name="light_grey">#CBCBCB</color>
     <color name="background_grey">#EEEEEE</color>
     <color name="text_grey">#A1A2A1</color>
+    <color name="red">#D62F2F</color>
 
     <color name="lesson_orange">#FFA41C</color>
     <color name="lesson_blue">#19B7DA</color>

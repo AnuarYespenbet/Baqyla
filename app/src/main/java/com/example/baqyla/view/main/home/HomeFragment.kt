@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
             tab_layout.addTab(tab_layout.newTab().setText(it.name))
             adapter?.addFragment(
                 AttendanceCountFragment.newInstance(
-                    it.count
+                    it.attendanceCount, it.absenceCount
                 )
             )
         }
