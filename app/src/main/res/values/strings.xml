@@ -40,4 +40,5 @@
     <string name="send_message">Отправить сообщение</string>
     <string name="close">Закрыть</string>
     <string name="message_accepted">Cпасибо ваше сообщение принято !</string>
+    <string name="one_hundred">100%</string>
 </resources>

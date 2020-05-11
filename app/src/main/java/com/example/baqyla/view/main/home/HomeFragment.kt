@@ -12,7 +12,6 @@ import com.example.baqyla.data.model.Child
 import com.example.baqyla.data.model.Subject
 import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.birthdayFromArrayToString
-import com.example.baqyla.utils.loadUrl
 import com.example.baqyla.view.main.home.attendance.AttendanceCountFragment
 import com.example.baqyla.view.main.home.attendance.AttendanceCountPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -95,7 +94,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViewPager() {
-
         view_pager.adapter = adapter
         view_pager.addOnPageChangeListener(
             TabLayout.TabLayoutOnPageChangeListener(

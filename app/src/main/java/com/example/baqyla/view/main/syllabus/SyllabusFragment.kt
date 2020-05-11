@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Child
+import com.example.baqyla.data.model.Lesson
 import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.*
+import com.example.baqyla.view.ui.CustomDividerItemDecoration
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -58,18 +58,12 @@ class SyllabusFragment : Fragment() {
             child_name.text = fullName
         }
 
-        val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        itemDecoration.setDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                R.drawable.divider_item_decoration
-            )!!
-        )
+        val itemDecoration = CustomDividerItemDecoration(requireContext())
         lessons_rv.apply {
             adapter = lessonsAdapter
             addItemDecoration(itemDecoration)
         }
-        lessonsAdapter.notifyDataSetChanged()
+        updateAdapterForDate(null)
 
         val daysOfWeek = daysOfWeekFromLocale()
         val currentMonth = YearMonth.now()
@@ -226,8 +220,12 @@ class SyllabusFragment : Fragment() {
         }
 
         calendar_view.monthScrollListener = { month ->
-            val title =
-                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${selectedDate?.dayOfMonth ?: today.dayOfMonth}"
+            val title = if (currentMonth == month.yearMonth) {
+                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${today.dayOfMonth}"
+            } else {
+                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}"
+            }
+
             month_and_year.text = title
 
             selectedDate?.let {
@@ -254,6 +252,9 @@ class SyllabusFragment : Fragment() {
     private fun updateAdapterForDate(date: LocalDate?) {
         lessonsAdapter.lessons.clear()
         lessonsAdapter.lessons.addAll(lessons[date].orEmpty())
+        for (i in 0 until 6 - lessonsAdapter.lessons.size) {
+            lessonsAdapter.lessons.add(Lesson())
+        }
         lessonsAdapter.notifyDataSetChanged()
     }
 }
