@@ -226,8 +226,12 @@ class SyllabusFragment : Fragment() {
         }
 
         calendar_view.monthScrollListener = { month ->
-            val title =
-                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${selectedDate?.dayOfMonth ?: today.dayOfMonth}"
+            val title = if (currentMonth == month.yearMonth) {
+                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${today.dayOfMonth}"
+            } else {
+                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}"
+            }
+
             month_and_year.text = title
 
             selectedDate?.let {
