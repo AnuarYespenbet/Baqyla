@@ -103,7 +103,7 @@ class IdFragment : Fragment(), TextWatcher {
 
     private fun showError(error: String) {
         Timber.e(error)
-        error_text.text = getString(R.string.error_id)
+        error_text.text = error
         error_text.visible()
         progress_bar.invisible()
         next_btn.visible()

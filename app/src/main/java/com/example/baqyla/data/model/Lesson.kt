@@ -9,9 +9,9 @@ data class Lesson(
     @SerializedName("datetime") val datetime: String? = "",
     @SerializedName("description") val description: String? = "",
     @SerializedName("id") val id: Int? = 0,
-    @SerializedName("subject") val subject: Subject?,
+    @SerializedName("subject") val subject: Subject? = null,
     @SerializedName("title") val title: String? = "",
-    val color: Int?,
+    val color: Int? = R.color.white,
     val attendance: String? = "",
     val time: LocalDateTime? = null
 ) {

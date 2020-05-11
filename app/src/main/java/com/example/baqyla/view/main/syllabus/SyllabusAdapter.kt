@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Lesson
 import com.example.baqyla.utils.getColorCompat
+import com.example.baqyla.utils.invisible
+import com.example.baqyla.utils.visible
 import kotlinx.android.synthetic.main.row_item_syllabus.view.*
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -30,15 +32,28 @@ class SyllabusAdapter : RecyclerView.Adapter<SyllabusAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Lesson) {
-            itemView.start_time.text = formatter.format(item.time)
-            val time = item.time?.hour?.plus(1)
-            val endText = "$time:00"
-            itemView.end_time.text = endText
-            item.color?.let {
-                itemView.divider.setBackgroundColor(itemView.context.getColorCompat(it))
-                itemView.subject_name.setTextColor(itemView.context.getColorCompat(it))
+            itemView.apply {
+                if (item.time != null) {
+                    start_time.text = formatter.format(item.time)
+                    val time = item.time.hour.plus(1)
+                    val endText = "$time:00"
+                    end_time.text = endText
+                    item.color?.let { color ->
+                        divider.setBackgroundColor(itemView.context.getColorCompat(color))
+                        subject_name.setTextColor(itemView.context.getColorCompat(color))
+                    }
+                    subject_name.text = item.subject?.name
+                    start_time.visible()
+                    end_time.visible()
+                    subject_name.visible()
+                    divider.visible()
+                } else {
+                    start_time.invisible()
+                    end_time.invisible()
+                    subject_name.invisible()
+                    divider.invisible()
+                }
             }
-            itemView.subject_name.text = item.subject?.name
         }
 
     }
