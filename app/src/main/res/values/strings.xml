@@ -31,4 +31,13 @@
     <string name="info_child">Сведения о ребенке</string>
     <string name="choose_subject">Выберите занятие чтобы посмотреть данные</string>
     <string name="attendance_percent">Процент посещаемости занятий за все время</string>
+    <string name="visited_lessons">Посещенных занятий за последний месяц</string>
+    <string name="missed_lessons">Пропущенных занятий за последний месяц</string>
+    <string name="select_reason">Выберите причину и предмет по которому хотите сообщить об отсутсвие</string>
+    <string name="choose_subject2">Выберите предмет</string>
+    <string name="additional_field">Поле для дополнительного ввода текста</string>
+    <string name="enter_message">Введите сообщение</string>
+    <string name="send_message">Отправить сообщение</string>
+    <string name="close">Закрыть</string>
+    <string name="message_accepted">Cпасибо ваше сообщение принято !</string>
 </resources>

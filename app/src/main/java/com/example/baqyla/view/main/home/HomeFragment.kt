@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         child?.apply {
             val fullName = "$name $surname"
             name_text.text = fullName
-            image.loadUrl(profilePhoto)
+            //image.loadUrl(profilePhoto)
             birthday_text.text = birthday?.let { birthdayFromArrayToString(it) }
             phone_text.text = phone
             address_text.text = address
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
             tab_layout.addTab(tab_layout.newTab().setText(it.name))
             adapter?.addFragment(
                 AttendanceCountFragment.newInstance(
-                    it.count
+                    it.attendanceCount, it.absenceCount
                 )
             )
         }

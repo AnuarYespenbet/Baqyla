@@ -25,6 +25,7 @@ import com.kizitonwose.calendarview.utils.previous
 import kotlinx.android.synthetic.main.calendar_day_legend.view.*
 import kotlinx.android.synthetic.main.fragment_syllabus.*
 import kotlinx.android.synthetic.main.item_calendar_day.view.*
+import kotlinx.android.synthetic.main.layout_child.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.YearMonth
 import org.threeten.bp.format.TextStyle
@@ -34,7 +35,7 @@ class SyllabusFragment : Fragment() {
     private lateinit var syllabusViewModel: SyllabusViewModel
     private var selectedDate: LocalDate? = null
     private val lessonsAdapter = SyllabusAdapter()
-    private val lessons = generateLessons().groupBy { it.dateTime?.toLocalDate() }
+    private val lessons = generateLessons().groupBy { it.time?.toLocalDate() }
     private val today = LocalDate.now()
     private var user: User? = null
     private var child: Child? = null
@@ -52,7 +53,10 @@ class SyllabusFragment : Fragment() {
         syllabusViewModel = ViewModelProvider(this).get(SyllabusViewModel::class.java)
         user = syllabusViewModel.user
         child = user?.children?.get(0)
-        child_name.text = child?.name
+        child?.apply {
+            val fullName = "$name $surname"
+            child_name.text = fullName
+        }
 
         val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
@@ -125,11 +129,12 @@ class SyllabusFragment : Fragment() {
                         lessonsOnDay != null -> {
                             textView.setTextColorRes(R.color.white)
                             if (lessonsOnDay.size == 1) {
-                                dayBackground.background.setTint(
-                                    requireContext().getColorCompat(
-                                        lessonsOnDay[0].color
+                                lessonsOnDay[0].color?.let {
+                                    dayBackground.background.setTint(
+                                        requireContext().getColorCompat(it)
                                     )
-                                )
+                                }
+
                                 dotView.background.setTint(
                                     requireContext().getColorCompat(
                                         lessonsOnDay[0].attendanceColor
@@ -139,16 +144,16 @@ class SyllabusFragment : Fragment() {
                                 dayTopBackground.invisible()
                                 dayBottomBackground.invisible()
                             } else if (lessonsOnDay.size == 2) {
-                                dayTopBackground.background.setTint(
-                                    requireContext().getColorCompat(
-                                        lessonsOnDay[0].color
+                                lessonsOnDay[0].color?.let {
+                                    dayTopBackground.background.setTint(
+                                        requireContext().getColorCompat(it)
                                     )
-                                )
-                                dayBottomBackground.background.setTint(
-                                    requireContext().getColorCompat(
-                                        lessonsOnDay[1].color
+                                }
+                                lessonsOnDay[1].color?.let {
+                                    dayBottomBackground.background.setTint(
+                                        requireContext().getColorCompat(it)
                                     )
-                                )
+                                }
                                 dotView.background.setTint(
                                     requireContext().getColorCompat(
                                         lessonsOnDay[0].attendanceColor

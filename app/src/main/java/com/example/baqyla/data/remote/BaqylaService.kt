@@ -1,7 +1,10 @@
 package com.example.baqyla.data.remote
 
 import com.example.baqyla.data.model.Lesson
+import com.example.baqyla.data.model.Reason
+import com.example.baqyla.data.model.Subject
 import com.example.baqyla.data.model.User
+import com.example.baqyla.data.remote.response.Inform
 import com.example.baqyla.data.remote.response.ExistPassword
 import com.example.baqyla.data.remote.response.ExistUser
 import io.reactivex.Observable
@@ -40,4 +43,20 @@ interface BaqylaService {
         @Query("dateTo") dateTo: String,
         @Query("childId") childId: Int
     ): Observable<List<Lesson>>
+
+    @GET("/inform/subjects")
+    fun getSubjects(): Observable<List<Subject>>
+
+    @GET("/inform/lessons")
+    fun getLessons(
+        @Query("subjectId") subjectId: Int
+    ): Observable<List<Lesson>>
+
+    @GET("/inform/reasons")
+    fun getReason(): Observable<List<Reason>>
+
+    @POST("/inform/add")
+    fun sendInform(
+        @Body data: Map<String, @JvmSuppressWildcards Any>
+    ): Single<Inform>
 }

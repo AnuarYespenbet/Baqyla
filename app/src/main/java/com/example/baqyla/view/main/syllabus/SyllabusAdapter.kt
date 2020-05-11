@@ -30,11 +30,15 @@ class SyllabusAdapter : RecyclerView.Adapter<SyllabusAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Lesson) {
-            itemView.start_time.text = formatter.format(item.dateTime)
-            itemView.end_time.text = formatter.format(item.dateTime)
-            itemView.divider.setBackgroundColor(itemView.context.getColorCompat(item.color))
-            itemView.subject_name.setTextColor(itemView.context.getColorCompat(item.color))
-            itemView.subject_name.text = item.subject.name
+            itemView.start_time.text = formatter.format(item.time)
+            val time = item.time?.hour?.plus(1)
+            val endText = "$time:00"
+            itemView.end_time.text = endText
+            item.color?.let {
+                itemView.divider.setBackgroundColor(itemView.context.getColorCompat(it))
+                itemView.subject_name.setTextColor(itemView.context.getColorCompat(it))
+            }
+            itemView.subject_name.text = item.subject?.name
         }
 
     }

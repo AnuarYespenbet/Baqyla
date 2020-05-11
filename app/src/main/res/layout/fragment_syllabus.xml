@@ -9,44 +9,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/user_container"
+        <include
+            android:id="@+id/child_container"
+            layout="@layout/layout_child"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/bg_rounded_green"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="47dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/bg_circle_image"
-                android:scaleType="center"
-                android:src="@drawable/ic_camera2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
-
-            <TextView
-                android:id="@+id/child_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="21dp"
-                android:layout_marginBottom="21dp"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="@string/bekaidar_sultanbek"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/calendar_title"
@@ -60,7 +31,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_container" />
+            app:layout_constraintTop_toBottomOf="@id/child_container" />
 
         <LinearLayout
             android:id="@+id/attendance_container"
