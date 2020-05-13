@@ -16,11 +16,8 @@ import org.threeten.bp.format.DateTimeFormatter
 
 class SyllabusAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var lessons: ArrayList<LessonItem> = arrayListOf()
-    fun setLessonItems(items: List<LessonItem>) {
-        lessons = items as ArrayList<LessonItem>
-        for (i in 0 until 6 - lessons.size) {
-            lessons.add(EmptyLesson)
-        }
+    fun setLessonItems(items: ArrayList<LessonItem>) {
+        lessons = items
         notifyDataSetChanged()
     }
 
@@ -34,7 +31,7 @@ class SyllabusAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             EMPTY -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.row_item_syllabus, parent, false)
-                EmptySubjectHolder(view)
+                EmptyLessonHolder(view)
             }
             else -> {
                 throw RuntimeException("The type has to be SUBJECT or EMPTY")
@@ -49,7 +46,7 @@ class SyllabusAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             LESSON -> (holder as LessonHolder).bind(lessons[position] as Lesson)
-            EMPTY -> (holder as EmptySubjectHolder).bind()
+            EMPTY -> (holder as EmptyLessonHolder).bind()
         }
     }
 
@@ -74,7 +71,7 @@ class SyllabusAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class EmptySubjectHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class EmptyLessonHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.apply {
                 subject_name.invisible()

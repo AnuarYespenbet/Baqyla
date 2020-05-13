@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.baqyla.R
-import com.example.baqyla.data.model.Child
-import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.data.model.Syllabus
+import com.example.baqyla.data.model.*
 import com.example.baqyla.utils.*
 import com.example.baqyla.view.main.syllabus.calendar.DayViewContainerBinder
 import com.example.baqyla.view.main.syllabus.calendar.MonthViewContainerBinder
@@ -49,6 +47,7 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         syllabusViewModel = ViewModelProvider(this).get(SyllabusViewModel::class.java)
 
         setChild()
+        setLessonsRv()
         getLessonsAndAttendances()
     }
 
@@ -100,7 +99,6 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         if (lessonsMap != null && attendanceMap != null) {
             dayViewContainerBinder.setMap(lessonsMap!!, attendanceMap)
             setCalendarView()
-            setLessonsRv()
             progress_bar.invisible()
             error_text.invisible()
             syllabus_container.visible()
@@ -186,6 +184,12 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
     }
 
     private fun updateAdapterForDate(date: LocalDate?) {
-        lessonsAdapter.setLessonItems(lessonsMap?.get(date) ?: arrayListOf())
+        val lessonsOnDay = lessonsMap?.get(date)
+        val items = arrayListOf<LessonItem>()
+        lessonsOnDay?.let { items.addAll(it) }
+        for (i in 0 until 6 - (lessonsOnDay?.size ?: 0)) {
+            items.add(EmptyLesson)
+        }
+        lessonsAdapter.setLessonItems(items)
     }
 }
