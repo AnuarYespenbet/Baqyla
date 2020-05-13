@@ -1,6 +1,5 @@
 package com.example.baqyla.view.main.mail
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -111,9 +110,7 @@ class MailFragment : Fragment(), TextWatcher {
         lessons = data
         val lessonNameArray =
             lessons?.map {
-                it.datetime?.let { date ->
-                    getDayMonthYearWithDots(date)
-                }
+                getDayMonthYearWithDots(it.datetime)
             }?.toMutableList() ?: mutableListOf("Выберите день")
         val arrayAdapter = ArrayAdapter(
             requireContext(),

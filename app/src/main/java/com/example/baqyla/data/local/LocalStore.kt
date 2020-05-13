@@ -49,11 +49,6 @@ class LocalStore {
         editor?.remove(type.name)
         editor?.apply()
     }
-
-    fun removeAllValues() {
-        removeString(LocalStoreStringType.USER_ID)
-        removeObject(LocalStoreObjectType.CURRENT_USER)
-    }
 }
 
 enum class LocalStoreStringType {

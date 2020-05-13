@@ -4,41 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Child
 import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.data.model.User
+import com.example.baqyla.data.model.Syllabus
 import com.example.baqyla.utils.*
+import com.example.baqyla.view.main.syllabus.calendar.DayViewContainerBinder
+import com.example.baqyla.view.main.syllabus.calendar.MonthViewContainerBinder
+import com.example.baqyla.view.main.syllabus.calendar.OnDayClickListener
+import com.example.baqyla.view.main.syllabus.calendar.SelectedDate
 import com.example.baqyla.view.ui.CustomDividerItemDecoration
-import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.CalendarMonth
-import com.kizitonwose.calendarview.model.DayOwner
-import com.kizitonwose.calendarview.ui.DayBinder
-import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
-import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
-import kotlinx.android.synthetic.main.calendar_day_legend.view.*
 import kotlinx.android.synthetic.main.fragment_syllabus.*
-import kotlinx.android.synthetic.main.item_calendar_day.view.*
 import kotlinx.android.synthetic.main.layout_child.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.YearMonth
-import org.threeten.bp.format.TextStyle
-import java.util.*
+import org.threeten.bp.format.DateTimeFormatter
+import timber.log.Timber
 
-class SyllabusFragment : Fragment() {
+class SyllabusFragment : Fragment(), OnDayClickListener {
     private lateinit var syllabusViewModel: SyllabusViewModel
-    private var selectedDate: LocalDate? = null
-    private val lessonsAdapter = SyllabusAdapter()
-    private val lessons = generateLessons().groupBy { it.time?.toLocalDate() }
-    private val today = LocalDate.now()
-    private var user: User? = null
+    private val currentMonth = YearMonth.now()
+    private val minusMonth = currentMonth.minusMonths(10)
+    private val plusMonth = currentMonth.plusMonths(10)
     private var child: Child? = null
+    private val dayViewContainerBinder = DayViewContainerBinder()
+    private val lessonsAdapter = SyllabusAdapter()
+    private var lessonsMap: Map<LocalDate?, List<Lesson>>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,210 +47,145 @@ class SyllabusFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         syllabusViewModel = ViewModelProvider(this).get(SyllabusViewModel::class.java)
-        user = syllabusViewModel.user
-        child = user?.children?.get(0)
-        child?.apply {
-            val fullName = "$name $surname"
-            child_name.text = fullName
+
+        setChild()
+        getLessonsAndAttendances()
+    }
+
+    private fun getLessonsAndAttendances() {
+        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        val minusMonthFirstDay = minusMonth.atDay(1).atStartOfDay()
+        val plusMonthFirstDay = plusMonth.atDay(1).atStartOfDay()
+        val dateFrom = minusMonthFirstDay.format(dateFormat)
+        val dateTo = plusMonthFirstDay.format(dateFormat)
+        child?.id?.let { childId ->
+            syllabusViewModel.getLessonsAndAttendance(childId, dateFrom, dateTo)
+                .observe(viewLifecycleOwner, Observer { event ->
+                    when (event.status) {
+                        Status.SUCCESS -> {
+                            onSuccess(event)
+                        }
+                        Status.ERROR -> {
+                            onError(event)
+                        }
+                        Status.LOADING -> {
+                            onLoading()
+                        }
+                    }
+                })
+        }
+    }
+
+    private fun onLoading() {
+        progress_bar.visible()
+        error_text.invisible()
+        syllabus_container.invisible()
+    }
+
+    private fun onError(event: Event<Syllabus>) {
+        Timber.e(event.error)
+        error_text.text = event.error
+        progress_bar.invisible()
+        syllabus_container.invisible()
+    }
+
+    private fun onSuccess(event: Event<Syllabus>) {
+        val lessons = event.data?.lessons
+        val attendances = event.data?.attendances
+
+        lessonsMap = lessons?.groupBy { parseStringToLocalDate(it.datetime)?.toLocalDate() }
+        val attendanceMap =
+            attendances?.groupBy { parseStringToLocalDate(it.time)?.toLocalDate() }
+
+        if (lessonsMap != null && attendanceMap != null) {
+            dayViewContainerBinder.setMap(lessonsMap!!, attendanceMap)
+            setCalendarView()
+            setLessonsRv()
+            progress_bar.invisible()
+            error_text.invisible()
+            syllabus_container.visible()
+        } else {
+            progress_bar.invisible()
+            error_text.visible()
+            syllabus_container.invisible()
+        }
+    }
+
+    override fun onDayClick(selectedDate: LocalDate?, oldDate: LocalDate?) {
+        SelectedDate.date = selectedDate
+        selectedDate?.let { calendar_view.notifyDateChanged(it) }
+        oldDate?.let { calendar_view.notifyDateChanged(it) }
+        updateAdapterForDate(selectedDate)
+    }
+
+    private fun setCalendarView() {
+        val daysOfWeek = daysOfWeekFromLocale()
+        calendar_view.setup(minusMonth, plusMonth, daysOfWeek.first())
+        calendar_view.scrollToMonth(currentMonth)
+        setDayBinder()
+        setMonthBinder()
+        setMonthScrollListener(currentMonth)
+        onNextMonthClick()
+        onPreviousMonthClick()
+    }
+
+    private fun setMonthBinder() {
+        calendar_view.monthHeaderBinder = MonthViewContainerBinder()
+    }
+
+    private fun setDayBinder() {
+        dayViewContainerBinder.setOnDayClickListener(this)
+        calendar_view.dayBinder = dayViewContainerBinder
+    }
+
+    private fun onPreviousMonthClick() {
+        previous_month.setOnClickListener {
+            calendar_view.findFirstVisibleMonth()?.let {
+                calendar_view.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+    }
+
+    private fun onNextMonthClick() {
+        next_month.setOnClickListener {
+            calendar_view.findFirstVisibleMonth()?.let {
+                calendar_view.smoothScrollToMonth(it.yearMonth.next)
+            }
+        }
+    }
+
+    private fun setMonthScrollListener(currentMonth: YearMonth?) {
+        calendar_view.monthScrollListener = {
+            val today = LocalDate.now()
+            val dateText = if (currentMonth == it.yearMonth)
+                "${monthNamesRussian[it.month - 1]} ${it.yearMonth.year}, ${today.dayOfMonth}"
+            else "${monthNamesRussian[it.month - 1]} ${it.yearMonth.year}"
+            date.text = dateText
         }
 
+        SelectedDate.date?.let {
+            SelectedDate.date = null
+            calendar_view.notifyDateChanged(it)
+            updateAdapterForDate(null)
+        }
+    }
+
+    private fun setChild() {
+        child = syllabusViewModel.child
+        val fullName = "${child?.name} ${child?.surname}"
+        child_name.text = fullName
+    }
+
+    private fun setLessonsRv() {
         val itemDecoration = CustomDividerItemDecoration(requireContext())
         lessons_rv.apply {
             adapter = lessonsAdapter
             addItemDecoration(itemDecoration)
         }
         updateAdapterForDate(null)
-
-        val daysOfWeek = daysOfWeekFromLocale()
-        val currentMonth = YearMonth.now()
-        calendar_view.setup(
-            currentMonth.minusMonths(10),
-            currentMonth.plusMonths(10),
-            daysOfWeek.first()
-        )
-        calendar_view.scrollToMonth(currentMonth)
-        val firstDay = currentMonth.atDay(1)
-        val lastDay = currentMonth.atEndOfMonth()
-
-        class DayViewContainer(view: View) : ViewContainer(view) {
-            lateinit var day: CalendarDay
-            val textView = view.day_text
-            val dayBackground: View = view.day_background
-            val dayTopBackground: View = view.day_top_background
-            val dayBottomBackground: View = view.day_bottom_background
-            val dotView: View = view.dot_view
-
-            init {
-                view.setOnClickListener {
-                    if (day.owner == DayOwner.THIS_MONTH) {
-                        if (selectedDate != day.date) {
-                            val oldDate = selectedDate
-                            selectedDate = day.date
-                            calendar_view.notifyDateChanged(day.date)
-                            oldDate?.let { calendar_view.notifyDateChanged(it) }
-                            updateAdapterForDate(day.date)
-                        }
-                    }
-                }
-            }
-        }
-
-        calendar_view.dayBinder = object : DayBinder<DayViewContainer> {
-            override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.day = day
-                val textView = container.textView
-                textView.text = day.date.dayOfMonth.toString()
-
-                val dayBackground = container.dayBackground
-                val dayTopBackground = container.dayTopBackground
-                val dayBottomBackground = container.dayBottomBackground
-                val dotView = container.dotView
-
-                if (day.owner == DayOwner.THIS_MONTH) {
-                    val lessonsOnDay = lessons[day.date]
-                    when {
-                        today == day.date -> {
-                            textView.setTextColorRes(R.color.white)
-                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.green))
-                            dayBackground.visible()
-                            dayTopBackground.invisible()
-                            dayBottomBackground.invisible()
-                        }
-                        lessonsOnDay != null -> {
-                            textView.setTextColorRes(R.color.white)
-                            if (lessonsOnDay.size == 1) {
-                                lessonsOnDay[0].color?.let {
-                                    dayBackground.background.setTint(
-                                        requireContext().getColorCompat(it)
-                                    )
-                                }
-
-                                dotView.background.setTint(
-                                    requireContext().getColorCompat(
-                                        lessonsOnDay[0].attendanceColor
-                                    )
-                                )
-                                dayBackground.visible()
-                                dayTopBackground.invisible()
-                                dayBottomBackground.invisible()
-                            } else if (lessonsOnDay.size == 2) {
-                                lessonsOnDay[0].color?.let {
-                                    dayTopBackground.background.setTint(
-                                        requireContext().getColorCompat(it)
-                                    )
-                                }
-                                lessonsOnDay[1].color?.let {
-                                    dayBottomBackground.background.setTint(
-                                        requireContext().getColorCompat(it)
-                                    )
-                                }
-                                dotView.background.setTint(
-                                    requireContext().getColorCompat(
-                                        lessonsOnDay[0].attendanceColor
-                                    )
-                                )
-                                dayBackground.invisible()
-                                dayTopBackground.visible()
-                                dayBottomBackground.visible()
-                            }
-                        }
-                        selectedDate == day.date -> {
-                            textView.setTextColorRes(R.color.white)
-                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.grey))
-                            dayBackground.visible()
-                            dayTopBackground.invisible()
-                            dayBottomBackground.invisible()
-
-                            dotView.background.setTint(
-                                requireContext().getColorCompat(
-                                    R.color.white
-                                )
-                            )
-                        }
-                        else -> {
-                            textView.setTextColorRes(R.color.black)
-                            dayBackground.background.setTint(requireContext().getColorCompat(R.color.white))
-                            dayBackground.visible()
-                            dayTopBackground.invisible()
-                            dayBottomBackground.invisible()
-
-                            dotView.background.setTint(
-                                requireContext().getColorCompat(
-                                    R.color.white
-                                )
-                            )
-                        }
-                    }
-                } else {
-                    textView.invisible()
-                    dayBackground.invisible()
-                    dayTopBackground.invisible()
-                    dayBottomBackground.invisible()
-                    dotView.invisible()
-                }
-            }
-
-            override fun create(view: View): DayViewContainer = DayViewContainer(view)
-
-        }
-
-        class MonthViewContainer(view: View) : ViewContainer(view) {
-            val legendLayout = view.legend_layout
-        }
-
-        calendar_view.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
-            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
-                if (container.legendLayout.tag == null) {
-                    container.legendLayout.tag = month.yearMonth
-                    container.legendLayout.children.map { it as TextView }
-                        .forEachIndexed { index, tv ->
-                            tv.text =
-                                daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale("ru"))
-                            tv.setTextColorRes(R.color.grey)
-                        }
-                    month.yearMonth
-                }
-            }
-
-            override fun create(view: View): MonthViewContainer = MonthViewContainer(view)
-        }
-
-        calendar_view.monthScrollListener = { month ->
-            val title = if (currentMonth == month.yearMonth) {
-                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}, ${today.dayOfMonth}"
-            } else {
-                "${monthNamesRussian[month.month - 1]} ${month.yearMonth.year}"
-            }
-
-            month_and_year.text = title
-
-            selectedDate?.let {
-                selectedDate = null
-                calendar_view.notifyDateChanged(it)
-                updateAdapterForDate(null)
-            }
-        }
-
-        next_month.setOnClickListener {
-            calendar_view.findFirstVisibleMonth()?.let {
-                calendar_view.smoothScrollToMonth(it.yearMonth.next)
-            }
-        }
-
-        previous_month.setOnClickListener {
-            calendar_view.findFirstVisibleMonth()?.let {
-                calendar_view.smoothScrollToMonth(it.yearMonth.previous)
-            }
-        }
-
     }
 
     private fun updateAdapterForDate(date: LocalDate?) {
-        lessonsAdapter.lessons.clear()
-        lessonsAdapter.lessons.addAll(lessons[date].orEmpty())
-        for (i in 0 until 6 - lessonsAdapter.lessons.size) {
-            lessonsAdapter.lessons.add(Lesson())
-        }
-        lessonsAdapter.notifyDataSetChanged()
+        lessonsAdapter.setLessonItems(lessonsMap?.get(date) ?: arrayListOf())
     }
 }

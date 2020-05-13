@@ -4,24 +4,24 @@
         android:id="@+id/homeFragment"
         android:actionLayout="@layout/fragment_home"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/searchFragment"
-        android:actionLayout="@layout/fragment_search"
-        android:icon="@drawable/ic_search"
-        android:title="Search" />
+        android:actionLayout="@layout/fragment_school"
+        android:icon="@drawable/ic_book"
+        android:title="@string/school" />
 
     <item
         android:id="@+id/syllabusFragment"
         android:actionLayout="@layout/fragment_syllabus"
         android:icon="@drawable/ic_syllabus"
-        android:title="Syllabus" />
+        android:title="@string/syllabus" />
 
     <item
         android:id="@+id/mailFragment"
         android:actionLayout="@layout/fragment_mail"
         android:icon="@drawable/ic_mail"
-        android:title="Mail" />
+        android:title="@string/mail" />
 
 </menu>

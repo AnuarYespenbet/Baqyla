@@ -41,4 +41,15 @@
     <string name="close">Закрыть</string>
     <string name="message_accepted">Cпасибо ваше сообщение принято !</string>
     <string name="one_hundred">100%</string>
+    <string name="school_info">Информация о школе</string>
+    <string name="school_sunkar">Школа развития ‘Сункар’</string>
+    <string name="school_phone">+7 702 678 78 78</string>
+    <string name="school_address">г. Алматы, Есенгелди 76а</string>
+    <string name="school_email">sunkar_school@school.edu</string>
+    <string name="students_count_for_subject">Число учеников прошедщих занятия по уроку </string>
+    <string name="attendance_percent_students">Процент посещаемости учеников за все время</string>
+    <string name="home">Home</string>
+    <string name="school">School</string>
+    <string name="syllabus">Syllabus</string>
+    <string name="mail">Mail</string>
 </resources>
