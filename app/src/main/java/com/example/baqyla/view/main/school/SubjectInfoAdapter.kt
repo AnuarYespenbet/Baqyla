@@ -5,17 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baqyla.R
-import com.example.baqyla.data.model.SubjectInfo
+import com.example.baqyla.data.model.SchoolSubject
 import kotlinx.android.synthetic.main.layout_info.view.*
 
-class SubjectInfoAdapter(private var subjectsInfo: List<SubjectInfo>) :
+class SubjectInfoAdapter(private var subjectsInfo: List<SchoolSubject>) :
     RecyclerView.Adapter<SubjectInfoAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(subjectInfo: SubjectInfo) {
-            itemView.text_count.text = subjectInfo.count.toString()
+        fun bind(schoolSubject: SchoolSubject) {
+            itemView.text_count.text = schoolSubject.count.toString()
             val textInfo =
-                "${itemView.context.getString(R.string.students_count_for_subject)} ${subjectInfo.subjectName}"
+                "${itemView.context.getString(R.string.students_count_for_subject)} ${schoolSubject.subject}"
             itemView.text_info.text = textInfo
         }
     }

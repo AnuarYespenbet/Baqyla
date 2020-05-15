@@ -63,4 +63,10 @@ interface BaqylaService {
     fun sendInform(
         @Body data: Map<String, @JvmSuppressWildcards Any>
     ): Single<Inform>
+
+    @GET("/inform/about-school")
+    fun getSchoolDetail(): Observable<SchoolDetail>
+
+    @GET("/inform/children2subjects")
+    fun getSchoolSubjects(): Observable<List<SchoolSubject>>
 }
