@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Child
 import com.example.baqyla.data.model.Subject
-import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.birthdayFromArrayToString
 import com.example.baqyla.view.main.home.attendance.AttendanceCountFragment
 import com.example.baqyla.view.main.home.attendance.AttendanceCountPagerAdapter
@@ -19,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
-    private var user: User? = null
     private var child: Child? = null
     private var subjects: List<Subject>? = null
     private var adapter: AttendanceCountPagerAdapter? = null
@@ -35,7 +33,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        setObjects()
+        setChildDetails()
+        setTabLayout()
+    }
+
+    private fun setChildDetails() {
+        child = homeViewModel.child
+
         child?.apply {
             val fullName = "$name $surname"
             name_text.text = fullName
@@ -44,13 +48,6 @@ class HomeFragment : Fragment() {
             phone_text.text = phone
             address_text.text = address
         }
-        setTabLayout()
-    }
-
-    private fun setObjects() {
-        user = homeViewModel.user
-        child = user?.children?.get(0)
-        subjects = child?.subjects
     }
 
     private fun setTabLayout() {
@@ -83,6 +80,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setSubjects() {
+        subjects = child?.subjects
         subjects?.forEach {
             tab_layout.addTab(tab_layout.newTab().setText(it.name))
             adapter?.addFragment(

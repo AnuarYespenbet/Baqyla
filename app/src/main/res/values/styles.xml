@@ -72,7 +72,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="ProfileField">
+    <style name="DetailTextWithDrawable">
         <item name="android:textColor">@color/text_grey</item>
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">14sp</item>
@@ -98,6 +98,22 @@
         <item name="android:padding">0dp</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Avatar">
+        <item name="android:src">@drawable/ic_camera</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:background">@drawable/bg_circle_image</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:fontFamily">@font/noto_sans_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

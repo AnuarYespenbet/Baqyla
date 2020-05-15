@@ -1,12 +1,9 @@
 package com.example.baqyla.data.remote
 
-import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.data.model.Reason
-import com.example.baqyla.data.model.Subject
-import com.example.baqyla.data.model.User
-import com.example.baqyla.data.remote.response.Inform
+import com.example.baqyla.data.model.*
 import com.example.baqyla.data.remote.response.ExistPassword
 import com.example.baqyla.data.remote.response.ExistUser
+import com.example.baqyla.data.remote.response.Inform
 import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.ResponseBody
@@ -39,10 +36,17 @@ interface BaqylaService {
 
     @GET("/lessons/get")
     fun getLessonsByChildId(
+        @Query("childId") childId: Int,
         @Query("dateFrom") dateFrom: String,
-        @Query("dateTo") dateTo: String,
-        @Query("childId") childId: Int
+        @Query("dateTo") dateTo: String
     ): Observable<List<Lesson>>
+
+    @GET("/lessons/attendance")
+    fun getAttendanceByChildId(
+        @Query("childId") childId: Int,
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String
+    ): Observable<List<Attendance>>
 
     @GET("/inform/subjects")
     fun getSubjects(): Observable<List<Subject>>
@@ -59,4 +63,10 @@ interface BaqylaService {
     fun sendInform(
         @Body data: Map<String, @JvmSuppressWildcards Any>
     ): Single<Inform>
+
+    @GET("/inform/about-school")
+    fun getSchoolDetail(): Observable<SchoolDetail>
+
+    @GET("/inform/children2subjects")
+    fun getSchoolSubjects(): Observable<List<SchoolSubject>>
 }

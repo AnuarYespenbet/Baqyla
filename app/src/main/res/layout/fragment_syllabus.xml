@@ -8,7 +8,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <include
@@ -79,6 +78,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/syllabus_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -95,7 +95,7 @@
                 android:background="@drawable/bg_rounded_grey">
 
                 <TextView
-                    android:id="@+id/month_and_year"
+                    android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
@@ -114,7 +114,7 @@
                     android:scaleType="center"
                     android:src="@drawable/ic_left_arrow"
                     app:layout_constraintEnd_toStartOf="@id/next_month"
-                    app:layout_constraintTop_toTopOf="@id/month_and_year" />
+                    app:layout_constraintTop_toTopOf="@id/date" />
 
                 <ImageView
                     android:id="@+id/next_month"
@@ -123,7 +123,7 @@
                     android:scaleType="center"
                     android:src="@drawable/ic_right_arrow"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/month_and_year" />
+                    app:layout_constraintTop_toTopOf="@id/date" />
 
                 <com.kizitonwose.calendarview.CalendarView
                     android:id="@+id/calendar_view"
@@ -133,9 +133,8 @@
                     app:cv_dayViewResource="@layout/item_calendar_day"
                     app:cv_monthHeaderResource="@layout/item_calendar_header"
                     app:cv_orientation="horizontal"
-                    app:cv_outDateStyle="endOfGrid"
                     app:cv_scrollMode="paged"
-                    app:layout_constraintTop_toBottomOf="@id/month_and_year" />
+                    app:layout_constraintTop_toBottomOf="@id/date" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -146,6 +145,28 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/calendar_view" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textColor="@color/red"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

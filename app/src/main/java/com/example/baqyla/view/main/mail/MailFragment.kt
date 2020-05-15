@@ -1,6 +1,5 @@
 package com.example.baqyla.view.main.mail
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -49,8 +48,7 @@ class MailFragment : Fragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mailViewModel = ViewModelProvider(this).get(MailViewModel::class.java)
-        user = mailViewModel.user
-        child = user?.children?.get(0)
+        child = mailViewModel.child
 
         child?.apply {
             val fullName = "$name $surname"
@@ -111,9 +109,7 @@ class MailFragment : Fragment(), TextWatcher {
         lessons = data
         val lessonNameArray =
             lessons?.map {
-                it.datetime?.let { date ->
-                    getDayMonthYearWithDots(date)
-                }
+                getDayMonthYearWithDots(it.datetime)
             }?.toMutableList() ?: mutableListOf("Выберите день")
         val arrayAdapter = ArrayAdapter(
             requireContext(),
