@@ -84,6 +84,7 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
     private fun onError(event: Event<Syllabus>) {
         Timber.e(event.error)
         error_text.text = event.error
+        error_text.visible()
         progress_bar.invisible()
         syllabus_container.invisible()
     }
@@ -118,6 +119,7 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
 
     private fun setCalendarView() {
         val daysOfWeek = daysOfWeekFromLocale()
+        calendar_view.setHasFixedSize(true)
         calendar_view.setup(minusMonth, plusMonth, daysOfWeek.first())
         calendar_view.scrollToMonth(currentMonth)
         setDayBinder()
@@ -170,8 +172,10 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
 
     private fun setChild() {
         child = syllabusViewModel.child
-        val fullName = "${child?.name} ${child?.surname}"
-        child_name.text = fullName
+        child?.let {
+            val fullName = "${child?.name} ${child?.surname}"
+            child_name.text = fullName
+        }
     }
 
     private fun setLessonsRv() {

@@ -48,8 +48,7 @@ class MailFragment : Fragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mailViewModel = ViewModelProvider(this).get(MailViewModel::class.java)
-        user = mailViewModel.user
-        child = user?.children?.get(0)
+        child = mailViewModel.child
 
         child?.apply {
             val fullName = "$name $surname"

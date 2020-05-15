@@ -15,7 +15,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MailViewModel : BaseViewModel() {
-    val user = LocalStore().get(LocalStoreObjectType.CURRENT_USER, User::class.java)
+    private val user = LocalStore().get(LocalStoreObjectType.CURRENT_USER, User::class.java)
+    val child = if (!user?.children.isNullOrEmpty()) user?.children?.get(0) else null
     private val repository = MailRepository(api)
 
     fun getSubjects(): MutableLiveData<Event<List<Subject>>> {

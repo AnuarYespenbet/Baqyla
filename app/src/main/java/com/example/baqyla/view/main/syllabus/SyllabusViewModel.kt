@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 class SyllabusViewModel : BaseViewModel() {
     private val repository = LessonsRepository(api)
     private val user = LocalStore().get(LocalStoreObjectType.CURRENT_USER, User::class.java)
-    val child = user?.children?.get(0)
+    val child = if (!user?.children.isNullOrEmpty()) user?.children?.get(0) else null
 
     fun getLessonsAndAttendance(
         childId: Int,
