@@ -51,6 +51,13 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         getLessonsAndAttendances()
     }
 
+    override fun onDayClick(selectedDate: LocalDate?, oldDate: LocalDate?) {
+        SelectedDate.date = selectedDate
+        selectedDate?.let { calendar_view.notifyDateChanged(it) }
+        oldDate?.let { calendar_view.notifyDateChanged(it) }
+        updateAdapterForDate(selectedDate)
+    }
+
     private fun getLessonsAndAttendances() {
         val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         val minusMonthFirstDay = minusMonth.atDay(1).atStartOfDay()
@@ -76,17 +83,12 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
     }
 
     private fun onLoading() {
-        progress_bar.visible()
-        error_text.invisible()
-        syllabus_container.invisible()
+        showProgress()
     }
 
     private fun onError(event: Event<Syllabus>) {
         Timber.e(event.error)
-        error_text.text = event.error
-        error_text.visible()
-        progress_bar.invisible()
-        syllabus_container.invisible()
+        hideProgress()
     }
 
     private fun onSuccess(event: Event<Syllabus>) {
@@ -97,24 +99,23 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         val attendanceMap =
             attendances?.groupBy { parseStringToLocalDate(it.time)?.toLocalDate() }
 
+        hideProgress()
         if (lessonsMap != null && attendanceMap != null) {
             dayViewContainerBinder.setMap(lessonsMap!!, attendanceMap)
             setCalendarView()
-            progress_bar.invisible()
-            error_text.invisible()
-            syllabus_container.visible()
         } else {
-            progress_bar.invisible()
-            error_text.visible()
-            syllabus_container.invisible()
+            requireActivity().toast(getString(R.string.error))
         }
     }
 
-    override fun onDayClick(selectedDate: LocalDate?, oldDate: LocalDate?) {
-        SelectedDate.date = selectedDate
-        selectedDate?.let { calendar_view.notifyDateChanged(it) }
-        oldDate?.let { calendar_view.notifyDateChanged(it) }
-        updateAdapterForDate(selectedDate)
+    private fun showProgress() {
+        progress_bar.visible()
+        syllabus_container.invisible()
+    }
+
+    private fun hideProgress() {
+        progress_bar.invisible()
+        syllabus_container.visible()
     }
 
     private fun setCalendarView() {
