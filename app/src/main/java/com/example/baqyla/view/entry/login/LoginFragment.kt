@@ -18,7 +18,7 @@ import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.Status
 import com.example.baqyla.utils.invisible
 import com.example.baqyla.utils.visible
-import com.example.baqyla.view.main.NavigationActivity
+import com.example.baqyla.view.main.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import timber.log.Timber
 

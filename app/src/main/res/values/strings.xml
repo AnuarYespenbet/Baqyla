@@ -52,4 +52,10 @@
     <string name="school">School</string>
     <string name="syllabus">Syllabus</string>
     <string name="mail">Mail</string>
+    <string name="logout">Выйти</string>
+    <string name="settings">Настройки</string>
+    <string name="menu">Меню</string>
+    <string name="logout_text">Вы действительно хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>

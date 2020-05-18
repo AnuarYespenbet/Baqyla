@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.baqyla.R
-import com.example.baqyla.view.main.NavigationActivity
+import com.example.baqyla.view.main.navigation.NavigationActivity
 
 class SplashFragment : Fragment() {
     private lateinit var splashViewModel: SplashViewModel
