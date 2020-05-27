@@ -2,12 +2,8 @@ package com.example.baqyla.utils
 
 import android.content.Context
 import android.util.TypedValue
-import com.example.baqyla.R
-import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.data.model.Subject
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.YearMonth
 import org.threeten.bp.temporal.WeekFields
 import java.text.SimpleDateFormat
 import java.util.*
