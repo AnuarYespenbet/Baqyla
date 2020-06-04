@@ -58,4 +58,9 @@
     <string name="logout_text">Вы действительно хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="hide">Скрыть</string>
+    <string name="on_boarding_first_title">Вы сможете с легкостью отслеживать время пребывание вашего ребенка</string>
+    <string name="on_boarding_first_description">Вам придет уведомление о посещении</string>
+    <string name="on_boarding_second_title">Вы сможете быть уверенными в безопасности вашего ребенка</string>
+    <string name="on_boarding_third_title">Вы сможете отслеживать успеваемость, расписание и количество посещенных уроков вашего ребенка</string>
 </resources>

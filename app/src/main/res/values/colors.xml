@@ -9,11 +9,13 @@
     <color name="brand_green">#47B198</color>
     <color name="green">#00B869</color>
     <color name="green_disabled">#B347B198</color>
-    <color name="grey">#B1B1B1</color>
+    <color name="grey">#E9ECEA</color>
     <color name="light_grey">#CBCBCB</color>
     <color name="background_grey">#EEEEEE</color>
     <color name="text_grey">#A1A2A1</color>
     <color name="red">#D62F2F</color>
+    <color name="second_blue">#3A5CB0</color>
+    <color name="light_green">#00DEB1</color>
 
     <color name="lesson_orange">#FFA41C</color>
     <color name="lesson_blue">#19B7DA</color>

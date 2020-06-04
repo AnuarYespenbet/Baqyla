@@ -116,12 +116,34 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
-
+    <style name="OnBoardingTitleTextViewStyle">
+        <item name="android:fontFamily">@font/noto_sans_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+    <style name="OnBoardingOutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
+    <style name="OnBoardingButtonStyle">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="OnBoardingCopyRightTextViewStyle">
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>

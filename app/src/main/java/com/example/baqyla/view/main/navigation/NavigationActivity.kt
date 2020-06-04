@@ -30,22 +30,21 @@ class NavigationActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
     private fun showDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.logout_text))
         builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
             navigationViewModel.logout()
-            navigateToLogin()
+            navigateToMain()
         }
         builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
         val dialog = builder.create()
         dialog.show()
-    }
-
-    private fun navigateToLogin() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun setUpBottomNav(navController: NavController) {

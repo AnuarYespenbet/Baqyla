@@ -25,6 +25,9 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         splashViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         when {
+            !splashViewModel.onBoardingCompleted -> {
+                findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            }
             splashViewModel.user != null -> {
                 startActivity(Intent(requireContext(), NavigationActivity::class.java))
                 activity?.finish()
