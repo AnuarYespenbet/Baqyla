@@ -16,9 +16,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.baqyla.R
 import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.Status
-import com.example.baqyla.utils.invisible
+import com.example.baqyla.utils.gone
 import com.example.baqyla.utils.visible
-import com.example.baqyla.view.main.navigation.NavigationActivity
+import com.example.baqyla.view.main.navigation.MainActivity
+import com.example.baqyla.view.on_boarding.OnBoardingActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import timber.log.Timber
 
@@ -85,13 +86,16 @@ class LoginFragment : Fragment(), TextWatcher {
 
     private fun onLoading() {
         progress_bar.visible()
-        next_btn.invisible()
-        error_text.invisible()
+        next_btn.gone()
     }
 
     private fun onSuccess(user: User) {
         loginViewModel.saveUser(user)
-        startActivity(Intent(requireContext(), NavigationActivity::class.java))
+        if (loginViewModel.onBoardingCompleted) {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+        } else {
+            startActivity(Intent(requireContext(), OnBoardingActivity::class.java))
+        }
         activity?.finish()
     }
 
@@ -100,6 +104,6 @@ class LoginFragment : Fragment(), TextWatcher {
         error_text.text = getString(R.string.error_login)
         error_text.visible()
         next_btn.visible()
-        progress_bar.invisible()
+        progress_bar.gone()
     }
 }

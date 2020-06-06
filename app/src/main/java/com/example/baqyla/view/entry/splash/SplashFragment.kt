@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.baqyla.R
-import com.example.baqyla.view.main.navigation.NavigationActivity
+import com.example.baqyla.view.main.navigation.MainActivity
+import com.example.baqyla.view.on_boarding.OnBoardingActivity
 
 class SplashFragment : Fragment() {
     private lateinit var splashViewModel: SplashViewModel
@@ -25,18 +26,19 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         splashViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         when {
-            !splashViewModel.onBoardingCompleted -> {
-                findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            splashViewModel.id == null -> {
+                findNavController().navigate(R.id.action_splashFragment_to_idFragment)
             }
-            splashViewModel.user != null -> {
-                startActivity(Intent(requireContext(), NavigationActivity::class.java))
-                activity?.finish()
-            }
-            splashViewModel.id != null -> {
+            splashViewModel.user == null -> {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }
+            !splashViewModel.onBoardingCompleted -> {
+                startActivity(Intent(requireContext(), OnBoardingActivity::class.java))
+                requireActivity().finish()
+            }
             else -> {
-                findNavController().navigate(R.id.action_splashFragment_to_idFragment)
+                startActivity(Intent(requireContext(), MainActivity::class.java))
+                requireActivity().finish()
             }
         }
     }

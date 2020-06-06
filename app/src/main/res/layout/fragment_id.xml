@@ -1,124 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:padding="16dp">
+    <TextView
+        style="@style/LoginDescriptionTextViewStyle"
+        android:text="@string/enter_id" />
 
-        <ImageView
-            android:id="@+id/brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_brand_logo"
-            android:layout_marginTop="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/id_edit"
+        style="@style/LoginEditTextStyle"
+        android:layout_marginTop="18dp"
+        android:hint="@string/enter_your_id"
+        android:inputType="numberDecimal" />
 
-        <TextView
-            android:id="@+id/welcome_to_baqyla"
-            style="@style/WelcomeToBaqylaStyle"
-            android:layout_marginTop="75dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/brand" />
+    <TextView
+        android:id="@+id/error_text"
+        style="@style/LoginErrorTextViewStyle"
+        android:layout_width="@dimen/login_edit_text_width"
+        android:layout_height="wrap_content"
+        android:text="@string/error_id" />
 
-        <TextView
-            android:id="@+id/enter_id_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/enter_id"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/welcome_to_baqyla" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next_btn"
+        style="@style/LoginButtonStyle"
+        android:enabled="false" />
 
-        <TextView
-            android:id="@+id/error_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/error_id"
-            android:textColor="@color/lesson_red"
-            android:textSize="12sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_id_desc" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/LoginProgressStyle" />
 
-        <TextView
-            android:id="@+id/id_number_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="27dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/id"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_id_desc" />
+</LinearLayout>
 
-        <EditText
-            android:id="@+id/id_edit"
-            android:inputType="numberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="43dp"
-            android:background="@drawable/bg_rounded_grey"
-            android:fontFamily="@font/rubik_regular"
-            android:hint="@string/enter_your_id"
-            android:padding="16dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/id_number_desc" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/next_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_marginTop="24dp"
-            style="@style/ButtonStyle"
-            android:text="@string/next"
-            android:enabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/id_edit" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/next_btn"
-            app:layout_constraintEnd_toEndOf="@id/next_btn"
-            app:layout_constraintStart_toStartOf="@id/next_btn"
-            app:layout_constraintTop_toTopOf="@id/next_btn" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="19dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/copyright"
-            android:textColor="#B1B1B1"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>

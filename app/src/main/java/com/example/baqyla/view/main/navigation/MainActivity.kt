@@ -9,15 +9,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.baqyla.R
-import com.example.baqyla.view.entry.MainActivity
+import com.example.baqyla.view.entry.EntryActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class NavigationActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var navigationViewModel: NavigationViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.acitivity_navigation)
+        setContentView(R.layout.activity_main)
         navigationViewModel = ViewModelProvider(this).get(NavigationViewModel::class.java)
 
         val host: NavHostFragment = supportFragmentManager
@@ -30,8 +30,8 @@ class NavigationActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+    private fun navigateToEntry() {
+        startActivity(Intent(this, EntryActivity::class.java))
         finish()
     }
 
@@ -40,7 +40,7 @@ class NavigationActivity : AppCompatActivity() {
         builder.setMessage(getString(R.string.logout_text))
         builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
             navigationViewModel.logout()
-            navigateToMain()
+            navigateToEntry()
         }
         builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
         val dialog = builder.create()

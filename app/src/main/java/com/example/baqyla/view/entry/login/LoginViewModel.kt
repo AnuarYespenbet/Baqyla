@@ -3,6 +3,7 @@ package com.example.baqyla.view.entry.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.baqyla.data.local.LocalStore
+import com.example.baqyla.data.local.LocalStoreBooleanType
 import com.example.baqyla.data.local.LocalStoreObjectType
 import com.example.baqyla.data.local.LocalStoreStringType
 import com.example.baqyla.data.model.User
@@ -13,6 +14,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel : BaseViewModel() {
+    val onBoardingCompleted = LocalStore().get(LocalStoreBooleanType.ON_BOARDING_COMPLETED) ?: false
+
     private val repository = UserRepository(api)
     val id
         get() = LocalStore().get(LocalStoreStringType.USER_ID)

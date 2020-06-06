@@ -73,7 +73,7 @@
     </style>
 
     <style name="DetailTextWithDrawable">
-        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textColor">@color/grey_text</item>
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">14sp</item>
         <item name="android:drawablePadding">8dp</item>
@@ -87,7 +87,7 @@
     </style>
 
     <style name="HintText">
-        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textColor">@color/grey_text</item>
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
@@ -144,6 +144,66 @@
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LoginDescriptionTextViewStyle">
+        <item name="android:layout_width">@dimen/login_edit_text_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/grey_text</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LoginEditTextStyle">
+        <item name="android:layout_width">@dimen/login_edit_text_width</item>
+        <item name="android:layout_height">@dimen/login_edit_text_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/rounded_shape_white</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="LoginErrorTextViewStyle">
+        <item name="android:textColor">@color/error_color</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LoginButtonStyle" parent="ButtonStyle">
+        <item name="android:layout_width">@dimen/login_button_width</item>
+        <item name="android:layout_height">@dimen/login_button_height</item>
+        <item name="android:text">@string/next</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="LoginProgressStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="PasswordTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="passwordToggleDrawable">@drawable/password_toggle</item>
+        <item name="passwordToggleEnabled">true</item>
+        <item name="elevation">2dp</item>
     </style>
 
 </resources>

@@ -2,14 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/on_boarding_gradient">
 
     <ImageView
         android:id="@+id/on_boarding_first_lines_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:src="@drawable/ic_on_boarding_lines_top_blue"
+        android:src="@drawable/ic_lines_top1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="290dp"
-        android:src="@drawable/ic_on_boarding_lines_bottom_blue"
+        android:src="@drawable/ic_lines_botttom1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +52,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="35dp"
         android:text="@string/on_boarding_first_title"
-        android:textColor="@color/second_blue"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/on_boarding_first_lines_bottom" />
@@ -63,7 +64,7 @@
         android:fontFamily="@font/noto_sans_regular"
         android:text="@string/on_boarding_first_description"
         android:textAlignment="center"
-        android:textColor="@color/second_blue"
+        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

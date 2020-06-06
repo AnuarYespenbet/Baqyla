@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name=".view.entry.MainActivity"
+            android:name=".view.entry.EntryActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.main.navigation.NavigationActivity"/>
-
+        <activity android:name=".view.main.navigation.MainActivity"/>
+        <activity android:name=".view.on_boarding.OnBoardingActivity" />
     </application>
 
 </manifest>
