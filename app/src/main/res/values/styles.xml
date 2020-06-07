@@ -101,7 +101,6 @@
     </style>
 
     <style name="Avatar">
-        <item name="android:src">@drawable/avatar</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

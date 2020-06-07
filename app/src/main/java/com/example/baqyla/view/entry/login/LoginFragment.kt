@@ -18,7 +18,7 @@ import com.example.baqyla.data.model.User
 import com.example.baqyla.utils.Status
 import com.example.baqyla.utils.gone
 import com.example.baqyla.utils.visible
-import com.example.baqyla.view.main.navigation.MainActivity
+import com.example.baqyla.view.main.MainActivity
 import com.example.baqyla.view.on_boarding.OnBoardingActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import timber.log.Timber

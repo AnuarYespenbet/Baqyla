@@ -1,27 +1,27 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M9,21H5C4.4696,21 3.9609,20.7893 3.5858,20.4142C3.2107,20.0391 3,19.5304 3,19V5C3,4.4696 3.2107,3.9609 3.5858,3.5858C3.9609,3.2107 4.4696,3 5,3H9"
-        android:strokeWidth="2"
-        android:strokeColor="#b1b1b1"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M16,17L21,12L16,7"
-        android:strokeWidth="2"
-        android:strokeColor="#b1b1b1"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M21,12H9"
-        android:strokeWidth="2"
-        android:strokeColor="#b1b1b1"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round" />
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <path
+      android:pathData="M6,14H3.3333C2.9797,14 2.6406,13.8595 2.3905,13.6095C2.1405,13.3594 2,13.0203 2,12.6667V3.3333C2,2.9797 2.1405,2.6406 2.3905,2.3905C2.6406,2.1405 2.9797,2 3.3333,2H6"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="#FF4242"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M10.6666,11.3334L14,8.0001L10.6666,4.6667"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="#FF4242"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M14,8H6"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="#FF4242"
+      android:strokeLineCap="round"/>
 </vector>

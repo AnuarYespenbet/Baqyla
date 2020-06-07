@@ -12,5 +12,6 @@ data class Child(
     @SerializedName("birthday") val birthday: List<Int>?,
     @SerializedName("telephone") val phone: String?,
     @SerializedName("address") val address: String?,
-    @SerializedName("subjects") val subjects: List<Subject>?
+    @SerializedName("subjects") val subjects: List<Subject>?,
+    var selected: Boolean = false
 ) : Serializable

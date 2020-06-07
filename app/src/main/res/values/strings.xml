@@ -23,6 +23,7 @@
     <string name="enter_password">Введите пароль</string>
     <string name="enter_again">Повторите пароль</string>
     <string name="back">Назад</string>
+    <string name="back2">назад</string>
     <string name="change_id">Сменить ID</string>
     <string name="info_child">Сведения о ребенке</string>
     <string name="choose_subject">Выберите занятие чтобы посмотреть данные</string>
@@ -61,4 +62,5 @@
     <string name="on_boarding_second_description">Face ID c отсканированными данными</string>
     <string name="on_boarding_third_title">Вы сможете отслеживать успеваемость, расписание и количество посещенных уроков вашего ребенка</string>
     <string name="on_boarding_third_description">Расписание с календарем занятий</string>
+    <string name="exit">выйти из аккаунта</string>
 </resources>

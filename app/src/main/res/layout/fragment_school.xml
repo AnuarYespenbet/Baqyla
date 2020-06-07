@@ -27,7 +27,8 @@
 
             <ImageView
                 android:id="@+id/image"
-                style="@style/Avatar" />
+                style="@style/Avatar"
+                android:src="@drawable/school_ava" />
 
             <TextView
                 android:id="@+id/school_name"

@@ -22,7 +22,8 @@
 
         <ImageView
             android:id="@+id/image"
-            style="@style/Avatar" />
+            style="@style/Avatar"
+            android:src="@drawable/avatar" />
 
         <TextView
             android:id="@+id/name_text"

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.baqyla.R
 import com.example.baqyla.data.local.LocalStore
 import com.example.baqyla.data.local.LocalStoreBooleanType
-import com.example.baqyla.view.main.navigation.MainActivity
+import com.example.baqyla.view.main.MainActivity
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 
 class OnBoardingActivity : AppCompatActivity() {

@@ -19,6 +19,7 @@
     <color name="background">#F6F6F6</color>
     <color name="grey_text">#858585</color>
     <color name="grey_text2">#B1B1B1</color>
+    <color name="white_opacity25">#40DADADA</color>
 
     <color name="lesson_orange">#FFA41C</color>
     <color name="lesson_blue">#19B7DA</color>

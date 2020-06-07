@@ -70,5 +70,6 @@ enum class LocalStoreStringType {
 }
 
 enum class LocalStoreObjectType {
-    CURRENT_USER
+    CURRENT_USER,
+    SELECTED_CHILD
 }

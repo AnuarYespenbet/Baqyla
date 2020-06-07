@@ -11,6 +11,7 @@ import com.example.baqyla.R
 import com.example.baqyla.data.model.Child
 import com.example.baqyla.data.model.Subject
 import com.example.baqyla.utils.birthdayFromArrayToString
+import com.example.baqyla.utils.loadUrl
 import com.example.baqyla.view.main.home.attendance.AttendanceCountFragment
 import com.example.baqyla.view.main.home.attendance.AttendanceCountPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
         child?.apply {
             val fullName = "$name $surname"
             name_text.text = fullName
-            //image.loadUrl(profilePhoto)
+            image.loadUrl(profilePhoto)
             birthday_text.text = birthday?.let { birthdayFromArrayToString(it) }
             phone_text.text = phone
             address_text.text = address
@@ -59,8 +60,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        adapter =
-            AttendanceCountPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        adapter = AttendanceCountPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
     }
 
     private fun setIndicator() {

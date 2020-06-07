@@ -3,10 +3,7 @@ package com.example.baqyla.view.main.syllabus
 import androidx.lifecycle.MutableLiveData
 import com.example.baqyla.data.local.LocalStore
 import com.example.baqyla.data.local.LocalStoreObjectType
-import com.example.baqyla.data.model.Attendance
-import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.data.model.Syllabus
-import com.example.baqyla.data.model.User
+import com.example.baqyla.data.model.*
 import com.example.baqyla.data.repository.LessonsRepository
 import com.example.baqyla.utils.Event
 import com.example.baqyla.view.base.BaseViewModel
@@ -17,8 +14,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SyllabusViewModel : BaseViewModel() {
     private val repository = LessonsRepository(api)
-    private val user = LocalStore().get(LocalStoreObjectType.CURRENT_USER, User::class.java)
-    val child = if (!user?.children.isNullOrEmpty()) user?.children?.get(0) else null
+    val child = LocalStore().get(LocalStoreObjectType.SELECTED_CHILD, Child::class.java)
 
     fun getLessonsAndAttendance(
         childId: Int,
