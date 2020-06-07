@@ -5,10 +5,7 @@ import android.view.View
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Attendance
 import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.utils.getColorCompat
-import com.example.baqyla.utils.invisible
-import com.example.baqyla.utils.setTextColorRes
-import com.example.baqyla.utils.visible
+import com.example.baqyla.utils.*
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
@@ -73,7 +70,20 @@ class DayViewContainerBinder : DayBinder<DayViewContainer>, OnDayClickListener {
             val attendancesOnDay = mAttendanceMap?.get(day.date)
             if (!attendancesOnDay.isNullOrEmpty()) {
                 dotView.visible()
-                dotView.background.setTint(context.getColorCompat(R.color.green))
+                when (attendancesOnDay[0].status?.name) {
+                    Constants.NOT_LATE -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_green))
+                    }
+                    Constants.DID_NOT_COME -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_red))
+                    }
+                    Constants.LATE -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_orange))
+                    }
+                    else -> {
+                        dotView.invisible()
+                    }
+                }
             }
         }
     }

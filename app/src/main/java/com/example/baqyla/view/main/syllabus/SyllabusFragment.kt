@@ -56,6 +56,7 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         selectedDate?.let { calendar_view.notifyDateChanged(it) }
         oldDate?.let { calendar_view.notifyDateChanged(it) }
         updateAdapterForDate(selectedDate)
+        nested_scroll_view.smoothScrollTo(0, lessons_rv.top, 2000)
     }
 
     private fun getLessonsAndAttendances() {

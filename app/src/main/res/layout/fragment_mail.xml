@@ -4,18 +4,13 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <include
-            android:id="@+id/child_container"
-            layout="@layout/layout_child"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include layout="@layout/layout_child" />
 
         <TextView
             android:id="@+id/description"
@@ -23,19 +18,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
-            android:text="@string/select_reason"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/child_container" />
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/select_reason" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/subject_spinner_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/description">
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,9 +59,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/subject_spinner_container">
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,10 +89,11 @@
             android:id="@+id/reason_spinner_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="20dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/day_spinner_container">
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,17 +122,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="@string/additional_field"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reason_spinner_container" />
+            android:text="@string/additional_field" />
 
         <FrameLayout
             android:id="@+id/additional_field_edit_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/additional_field_description">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
             <EditText
                 android:id="@+id/additional_field_edit"
@@ -161,19 +157,16 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="24dp"
             android:enabled="false"
-            android:text="@string/send_message"
-            app:layout_constraintTop_toBottomOf="@id/additional_field_edit_container" />
+            android:text="@string/send_message" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/send_btn"
-            app:layout_constraintEnd_toEndOf="@id/send_btn"
-            app:layout_constraintStart_toStartOf="@id/send_btn"
-            app:layout_constraintTop_toTopOf="@id/send_btn" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:visibility="invisible" />
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

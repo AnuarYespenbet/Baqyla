@@ -3,9 +3,7 @@ package com.example.baqyla.view.main.syllabus.calendar
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.children
-import com.example.baqyla.R
 import com.example.baqyla.utils.daysOfWeekFromLocale
-import com.example.baqyla.utils.setTextColorRes
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import org.threeten.bp.format.TextStyle
@@ -19,7 +17,6 @@ class MonthViewContainerBinder : MonthHeaderFooterBinder<MonthViewContainer> {
                 .forEachIndexed { index, textView ->
                     val daysOfWeek = daysOfWeekFromLocale()
                     textView.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale("ru"))
-                    textView.setTextColorRes(R.color.grey)
                 }
         }
     }
