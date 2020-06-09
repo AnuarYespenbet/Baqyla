@@ -42,7 +42,6 @@ class LoginViewModel : BaseViewModel() {
 
     fun saveUser(user: User) {
         LocalStore().save(user, LocalStoreObjectType.CURRENT_USER)
-
     }
 
     fun subscribeToFirebaseNotification() {

@@ -66,4 +66,11 @@ interface BaqylaService {
 
     @GET("/inform/children2subjects")
     fun getSchoolSubjects(): Observable<List<SchoolSubject>>
+
+    @GET("/inform/statistics")
+    fun getStatistics(
+        @Query("childId") childId: Int,
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String
+    ): Single<Statistic>
 }

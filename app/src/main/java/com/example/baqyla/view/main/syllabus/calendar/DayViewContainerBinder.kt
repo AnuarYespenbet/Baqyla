@@ -4,8 +4,12 @@ import android.graphics.Color
 import android.view.View
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Attendance
+import com.example.baqyla.data.model.AttendanceStatusEnum
 import com.example.baqyla.data.model.Lesson
-import com.example.baqyla.utils.*
+import com.example.baqyla.utils.getColorCompat
+import com.example.baqyla.utils.invisible
+import com.example.baqyla.utils.setTextColorRes
+import com.example.baqyla.utils.visible
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
@@ -71,13 +75,13 @@ class DayViewContainerBinder : DayBinder<DayViewContainer>, OnDayClickListener {
             if (!attendancesOnDay.isNullOrEmpty()) {
                 dotView.visible()
                 when (attendancesOnDay[0].status?.name) {
-                    Constants.NOT_LATE -> {
+                    AttendanceStatusEnum.DONT_LATE -> {
                         dotView.background.setTint(context.getColorCompat(R.color.attendance_green))
                     }
-                    Constants.DID_NOT_COME -> {
+                    AttendanceStatusEnum.UNKNOWN -> {
                         dotView.background.setTint(context.getColorCompat(R.color.attendance_red))
                     }
-                    Constants.LATE -> {
+                    AttendanceStatusEnum.LATE -> {
                         dotView.background.setTint(context.getColorCompat(R.color.attendance_orange))
                     }
                     else -> {

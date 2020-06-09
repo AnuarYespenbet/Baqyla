@@ -181,6 +181,7 @@ class MailFragment : Fragment(), TextWatcher {
 
     private fun onSendClick() {
         val hashMap = HashMap<String, Any>()
+        hashMap["childId"] = child?.id ?: 0
         hashMap["lessonId"] = selectedLessonId
         hashMap["reasonId"] = selectedReasonId
         if (additional_field_edit.text.isNotEmpty()) {
@@ -205,7 +206,7 @@ class MailFragment : Fragment(), TextWatcher {
     }
 
     private fun onSendSuccess() {
-        val dialog = MailSuccessDialog()
+        val dialog = CustomDialog(R.drawable.ic_smile, getString(R.string.message_accepted))
         dialog.show(childFragmentManager, dialog::class.java.name)
         progress_bar.invisible()
         send_btn.visible()
