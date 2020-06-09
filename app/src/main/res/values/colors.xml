@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">@color/light_green</color>
     <color name="colorAccent">@color/green</color>
 
     <color name="black">#242423</color>
@@ -9,11 +9,18 @@
     <color name="brand_green">#47B198</color>
     <color name="green">#00B869</color>
     <color name="green_disabled">#B347B198</color>
-    <color name="grey">#B1B1B1</color>
+    <color name="grey">#E9ECEA</color>
     <color name="light_grey">#CBCBCB</color>
     <color name="background_grey">#EEEEEE</color>
-    <color name="text_grey">#A1A2A1</color>
-    <color name="red">#D62F2F</color>
+    <color name="error_color">#FF4242</color>
+    <color name="second_blue">#3A5CB0</color>
+    <color name="light_green">#00DEB1</color>
+    <color name="light_green_opacity70">#B300DEB1</color>
+    <color name="background">#F6F6F6</color>
+    <color name="grey_text">#858585</color>
+    <color name="grey_text2">#B1B1B1</color>
+    <color name="white_opacity25">#40DADADA</color>
+    <color name="dop">#47B8D9</color>
 
     <color name="lesson_orange">#FFA41C</color>
     <color name="lesson_blue">#19B7DA</color>
@@ -24,4 +31,5 @@
     <color name="attendance_green">#1CD67D</color>
     <color name="attendance_red">#F00909</color>
     <color name="attendance_orange">#FFA41C</color>
+
 </resources>

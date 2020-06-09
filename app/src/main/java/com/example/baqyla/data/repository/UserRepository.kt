@@ -23,4 +23,8 @@ class UserRepository(private val webService: BaqylaService) {
     fun login(id: String, password: String): Single<User> {
         return webService.login(id, password)
     }
+
+    fun logout(): Single<ResponseBody> {
+        return webService.logout()
+    }
 }

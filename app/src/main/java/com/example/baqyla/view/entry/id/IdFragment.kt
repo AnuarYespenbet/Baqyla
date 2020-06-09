@@ -15,6 +15,7 @@ import com.example.baqyla.R
 import com.example.baqyla.data.remote.response.ExistPassword
 import com.example.baqyla.data.remote.response.ExistUser
 import com.example.baqyla.utils.Status
+import com.example.baqyla.utils.gone
 import com.example.baqyla.utils.invisible
 import com.example.baqyla.utils.visible
 import kotlinx.android.synthetic.main.fragment_id.*
@@ -52,8 +53,10 @@ class IdFragment : Fragment(), TextWatcher {
     private fun setBgEdit(editText: EditText) {
         editText.background =
             if (editText.text.toString().isEmpty())
-                ContextCompat.getDrawable(requireContext(), R.drawable.bg_rounded_grey)
-            else ContextCompat.getDrawable(requireContext(), R.drawable.bg_rounded_green)
+                ContextCompat.getDrawable(requireContext(), R.drawable.rounded_shape_white)
+            else {
+                ContextCompat.getDrawable(requireContext(), R.drawable.bg_rounded_green)
+            }
     }
 
     private fun onNextClick() {
@@ -68,9 +71,9 @@ class IdFragment : Fragment(), TextWatcher {
     }
 
     private fun userExistsLoading() {
-        error_text.invisible()
+        error_text.gone()
         progress_bar.visible()
-        next_btn.invisible()
+        next_btn.gone()
     }
 
     private fun userExistsSuccess(existUser: ExistUser) {
@@ -103,9 +106,10 @@ class IdFragment : Fragment(), TextWatcher {
 
     private fun showError(error: String) {
         Timber.e(error)
+        id_edit.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_rounded_red)
         error_text.text = error
         error_text.visible()
-        progress_bar.invisible()
+        progress_bar.gone()
         next_btn.visible()
     }
 }

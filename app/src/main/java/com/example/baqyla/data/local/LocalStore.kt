@@ -15,6 +15,16 @@ class LocalStore {
         preference = context.getSharedPreferences(storeName, Context.MODE_PRIVATE)
     }
 
+    fun save(boolean: Boolean, type: LocalStoreBooleanType) {
+        editor = preference.edit()
+        editor?.putBoolean(type.name, boolean)
+        editor?.apply()
+    }
+
+    fun get(type: LocalStoreBooleanType): Boolean? {
+        return preference.getBoolean(type.name, false)
+    }
+
     fun save(string: String, type: LocalStoreStringType) {
         editor = preference.edit()
         editor?.putString(type.name, string)
@@ -51,10 +61,15 @@ class LocalStore {
     }
 }
 
+enum class LocalStoreBooleanType {
+    ON_BOARDING_COMPLETED
+}
+
 enum class LocalStoreStringType {
     USER_ID
 }
 
 enum class LocalStoreObjectType {
-    CURRENT_USER
+    CURRENT_USER,
+    SELECTED_CHILD
 }

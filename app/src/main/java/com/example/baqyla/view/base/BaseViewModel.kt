@@ -9,6 +9,7 @@ open class BaseViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
     private val networkService = NetworkService
     val api = networkService.createApiService()
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()

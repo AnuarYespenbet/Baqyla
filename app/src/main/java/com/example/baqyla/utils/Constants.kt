@@ -1,11 +1,8 @@
 package com.example.baqyla.utils
 
 object Constants {
-    const val NOT_LATE = "not_late"
-    const val DID_NOT_COME = "did_not_come"
-    const val LATE = "late"
-    const val NONE = "none"
-
+    const val NOTIFICATION_TITLE = "notification_title"
+    const val NOTIFICATION_STATUS = "notification_status"
     const val BACKEND_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"
     const val ANDROID_DATE_FORMAT = "dd.MM.yyyy"
 }

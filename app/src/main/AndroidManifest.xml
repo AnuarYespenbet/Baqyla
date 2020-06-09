@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name=".view.entry.MainActivity"
+            android:name=".view.entry.EntryActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.main.navigation.NavigationActivity"/>
+        <activity android:name=".view.main.MainActivity"/>
+        <activity android:name=".view.on_boarding.OnBoardingActivity" />
+        <activity android:name=".view.notification.NotificationsActivity" />
+
+        <service
+            android:name=".data.remote.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

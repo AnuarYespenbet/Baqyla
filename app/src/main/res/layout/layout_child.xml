@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_rounded_green"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="58dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginEnd="16dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="47dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/bg_circle_image"
-        android:scaleType="center"
-        android:src="@drawable/ic_camera2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/child_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="21dp"
-        android:fontFamily="@font/noto_sans_regular"
-        tools:text="@string/bekaidar_sultanbek"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
-</LinearLayout>
+        <ImageView
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/child_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="@string/anuar_yespenbet" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

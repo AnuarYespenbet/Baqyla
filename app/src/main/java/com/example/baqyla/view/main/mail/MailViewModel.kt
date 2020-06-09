@@ -3,10 +3,10 @@ package com.example.baqyla.view.main.mail
 import androidx.lifecycle.MutableLiveData
 import com.example.baqyla.data.local.LocalStore
 import com.example.baqyla.data.local.LocalStoreObjectType
+import com.example.baqyla.data.model.Child
 import com.example.baqyla.data.model.Lesson
 import com.example.baqyla.data.model.Reason
 import com.example.baqyla.data.model.Subject
-import com.example.baqyla.data.model.User
 import com.example.baqyla.data.remote.response.Inform
 import com.example.baqyla.data.repository.MailRepository
 import com.example.baqyla.utils.Event
@@ -15,9 +15,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MailViewModel : BaseViewModel() {
-    private val user = LocalStore().get(LocalStoreObjectType.CURRENT_USER, User::class.java)
-    val child = if (!user?.children.isNullOrEmpty()) user?.children?.get(0) else null
     private val repository = MailRepository(api)
+    val child = LocalStore().get(LocalStoreObjectType.SELECTED_CHILD, Child::class.java)
 
     fun getSubjects(): MutableLiveData<Event<List<Subject>>> {
         val liveData = MutableLiveData<Event<List<Subject>>>()

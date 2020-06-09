@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "34020035477",
+    "firebase_url": "https://diploma-project-sdu.firebaseio.com",
+    "project_id": "diploma-project-sdu",
+    "storage_bucket": "diploma-project-sdu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34020035477:android:92633517bfdd1d1f0c449c",
+        "android_client_info": {
+          "package_name": "kz.anuaryespenbet.baqyla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34020035477-ikf18ul7s241tl8a324jmbrmn0008tt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9TCzI9uVpwkafWRkJFXP0BjjVTplZROs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34020035477-ikf18ul7s241tl8a324jmbrmn0008tt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

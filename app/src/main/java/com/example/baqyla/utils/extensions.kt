@@ -34,6 +34,6 @@ internal fun TextView.setTextColorRes(@ColorRes color: Int) =
 fun ImageView.loadUrl(url: String?) {
     Glide.with(this)
         .load(url)
-        .placeholder(R.drawable.ic_person_outline_black_24dp)
+        .placeholder(R.drawable.avatar)
         .into(this)
 }

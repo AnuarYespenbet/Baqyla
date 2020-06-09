@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.baqyla.R
 import com.example.baqyla.data.model.*
 import com.example.baqyla.utils.*
+import com.example.baqyla.view.main.mail.CustomDialog
 import com.example.baqyla.view.main.syllabus.calendar.DayViewContainerBinder
 import com.example.baqyla.view.main.syllabus.calendar.MonthViewContainerBinder
 import com.example.baqyla.view.main.syllabus.calendar.OnDayClickListener
@@ -49,6 +50,25 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         setChild()
         setLessonsRv()
         getLessonsAndAttendances()
+
+        activity?.intent?.let {
+            if (it.hasExtra(Constants.NOTIFICATION_STATUS)) {
+                val image = when (it.getStringExtra(Constants.NOTIFICATION_STATUS)) {
+                    AttendanceStatusEnum.DONT_LATE.name -> {
+                        R.drawable.ic_smile
+                    }
+                    AttendanceStatusEnum.LATE.name -> {
+                        R.drawable.ic_frown
+                    }
+                    else -> {
+                        R.drawable.ic_smile
+                    }
+                }
+                val dialog =
+                    CustomDialog(image, it.getStringExtra(Constants.NOTIFICATION_TITLE) ?: "")
+                dialog.show(childFragmentManager, dialog::class.java.name)
+            }
+        }
     }
 
     override fun onDayClick(selectedDate: LocalDate?, oldDate: LocalDate?) {
@@ -56,6 +76,7 @@ class SyllabusFragment : Fragment(), OnDayClickListener {
         selectedDate?.let { calendar_view.notifyDateChanged(it) }
         oldDate?.let { calendar_view.notifyDateChanged(it) }
         updateAdapterForDate(selectedDate)
+        nested_scroll_view.smoothScrollTo(0, lessons_rv.top, 2000)
     }
 
     private fun getLessonsAndAttendances() {

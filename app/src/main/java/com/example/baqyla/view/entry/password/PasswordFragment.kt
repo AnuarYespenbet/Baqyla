@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.baqyla.R
 import com.example.baqyla.utils.Status
-import com.example.baqyla.utils.invisible
+import com.example.baqyla.utils.gone
 import com.example.baqyla.utils.visible
 import kotlinx.android.synthetic.main.fragment_password.*
 import timber.log.Timber
@@ -36,7 +36,6 @@ class PasswordFragment : Fragment(), TextWatcher {
         passwordViewModel = ViewModelProvider(this).get(PasswordViewModel::class.java)
         password_edit.addTextChangedListener(this)
         confirm_password_edit.addTextChangedListener(this)
-        previous_btn.setOnClickListener { findNavController().navigateUp() }
         next_btn.setOnClickListener { onNextClick() }
     }
 
@@ -83,8 +82,8 @@ class PasswordFragment : Fragment(), TextWatcher {
 
     private fun onLoading() {
         progress_bar.visible()
-        next_btn.invisible()
-        error_text.invisible()
+        next_btn.gone()
+        error_text.gone()
     }
 
     private fun onSuccess(id: String) {
@@ -94,7 +93,7 @@ class PasswordFragment : Fragment(), TextWatcher {
 
     private fun onError(error: String) {
         Timber.e(error)
-        progress_bar.invisible()
+        progress_bar.gone()
         error_text.visible()
     }
 }

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import com.example.baqyla.R
 import com.example.baqyla.data.model.Attendance
+import com.example.baqyla.data.model.AttendanceStatusEnum
 import com.example.baqyla.data.model.Lesson
 import com.example.baqyla.utils.getColorCompat
 import com.example.baqyla.utils.invisible
@@ -73,7 +74,20 @@ class DayViewContainerBinder : DayBinder<DayViewContainer>, OnDayClickListener {
             val attendancesOnDay = mAttendanceMap?.get(day.date)
             if (!attendancesOnDay.isNullOrEmpty()) {
                 dotView.visible()
-                dotView.background.setTint(context.getColorCompat(R.color.green))
+                when (attendancesOnDay[0].status?.name) {
+                    AttendanceStatusEnum.DONT_LATE -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_green))
+                    }
+                    AttendanceStatusEnum.UNKNOWN -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_red))
+                    }
+                    AttendanceStatusEnum.LATE -> {
+                        dotView.background.setTint(context.getColorCompat(R.color.attendance_orange))
+                    }
+                    else -> {
+                        dotView.invisible()
+                    }
+                }
             }
         }
     }

@@ -14,7 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.baqyla.R
-import com.example.baqyla.data.model.*
+import com.example.baqyla.data.model.Child
+import com.example.baqyla.data.model.Lesson
+import com.example.baqyla.data.model.Reason
+import com.example.baqyla.data.model.Subject
 import com.example.baqyla.utils.Status
 import com.example.baqyla.utils.getDayMonthYearWithDots
 import com.example.baqyla.utils.invisible
@@ -25,7 +28,6 @@ import timber.log.Timber
 
 class MailFragment : Fragment(), TextWatcher {
     private lateinit var mailViewModel: MailViewModel
-    private var user: User? = null
     private var child: Child? = null
 
     private var subjects: List<Subject>? = null
@@ -68,8 +70,10 @@ class MailFragment : Fragment(), TextWatcher {
         mailViewModel.getSubjects().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> { onSubjectsSuccess(it.data) }
-                Status.ERROR -> { Timber.e(it.error) }
-                Status.LOADING -> { Timber.d("subjects loading") }
+                Status.ERROR -> {
+                }
+                Status.LOADING -> {
+                }
             }
         })
     }
@@ -177,6 +181,7 @@ class MailFragment : Fragment(), TextWatcher {
 
     private fun onSendClick() {
         val hashMap = HashMap<String, Any>()
+        hashMap["childId"] = child?.id ?: 0
         hashMap["lessonId"] = selectedLessonId
         hashMap["reasonId"] = selectedReasonId
         if (additional_field_edit.text.isNotEmpty()) {
@@ -201,7 +206,7 @@ class MailFragment : Fragment(), TextWatcher {
     }
 
     private fun onSendSuccess() {
-        val dialog = MailSuccessDialog()
+        val dialog = CustomDialog(R.drawable.ic_smile, getString(R.string.message_accepted))
         dialog.show(childFragmentManager, dialog::class.java.name)
         progress_bar.invisible()
         send_btn.visible()

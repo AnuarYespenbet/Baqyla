@@ -61,9 +61,10 @@ class SyllabusAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(lesson: Lesson) {
             itemView.apply {
                 val dateFormat = DateTimeFormatter.ofPattern("HH:mm")
-                val date = parseStringToLocalDate(lesson.datetime)
-                start_time.text = date?.format(dateFormat)
-                end_time.text = date?.format(dateFormat)
+                val startTime = parseStringToLocalDate(lesson.datetime)
+                val endTime = parseStringToLocalDate(lesson.endtime)
+                start_time.text = startTime?.format(dateFormat)
+                end_time.text = endTime?.format(dateFormat)
                 subject_name.text = lesson.subject.name
                 subject_name.setTextColor(Color.parseColor(lesson.subject.color))
                 divider.background.setTint(Color.parseColor(lesson.subject.color))

@@ -1,178 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        style="@style/LoginDescriptionTextViewStyle"
+        android:text="@string/enter_login_and_password" />
+
+    <EditText
+        android:id="@+id/id_edit"
+        style="@style/LoginEditTextStyle"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_rounded_green"
+        android:hint="@string/id"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/password_edit"
+        style="@style/LoginEditTextStyle"
+        android:layout_marginTop="16dp"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/change_id"
+        android:layout_width="@dimen/login_edit_text_width"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="16dp">
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/change_id"
+        android:textColor="@color/grey_text"
+        android:textSize="12sp" />
 
-        <ImageView
-            android:id="@+id/brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_brand_logo"
-            android:layout_marginTop="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/error_text"
+        style="@style/LoginErrorTextViewStyle"
+        android:layout_width="@dimen/login_edit_text_width"
+        android:layout_height="wrap_content"
+        android:text="@string/error_login" />
 
-        <TextView
-            android:id="@+id/success_register"
-            style="@style/WelcomeToBaqylaStyle"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/brand" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next_btn"
+        style="@style/LoginButtonStyle"
+        android:enabled="false" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="63dp"
-            android:layout_marginEnd="63dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/enter_login_and_password"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/success_register" />
-
-        <TextView
-            android:id="@+id/error_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/error_login"
-            android:textColor="@color/lesson_red"
-            android:textSize="12sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description" />
-
-        <TextView
-            android:id="@+id/id_number_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/your_login"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description" />
-
-        <EditText
-            android:id="@+id/id_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="43dp"
-            android:inputType="numberDecimal"
-            android:background="@drawable/bg_rounded_green"
-            android:fontFamily="@font/rubik_regular"
-            android:hint="@string/id2"
-            android:paddingStart="8dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="13dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/id_number_desc" />
-
-        <TextView
-            android:id="@+id/password_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/password"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/id_edit" />
-
-        <EditText
-            android:id="@+id/password_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="43dp"
-            android:background="@drawable/bg_rounded_grey"
-            android:fontFamily="@font/rubik_regular"
-            android:hint="@string/password2"
-            android:paddingStart="8dp"
-            android:inputType="textPassword"
-            android:paddingTop="14dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="13dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/password_desc" />
-
-        <TextView
-            android:id="@+id/change_id"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:fontFamily="@font/rubik_regular"
-            android:layout_marginTop="8dp"
-            android:text="@string/change_id"
-            android:textAllCaps="false"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/password_edit"
-            app:layout_constraintTop_toBottomOf="@id/password_edit" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/next_btn"
-            style="@style/ButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_marginTop="46dp"
-            android:text="@string/login"
-            android:enabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_edit" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/next_btn"
-            app:layout_constraintEnd_toEndOf="@id/next_btn"
-            app:layout_constraintStart_toStartOf="@id/next_btn"
-            app:layout_constraintTop_toTopOf="@id/next_btn" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="19dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/copyright"
-            android:textColor="#B1B1B1"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/LoginProgressStyle" />
+</LinearLayout>

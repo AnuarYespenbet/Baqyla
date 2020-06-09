@@ -8,31 +8,28 @@
     <string name="did_not_come">Не пришел</string>
     <string name="late">Опоздал</string>
     <string name="enter_id">Пожалуйста введите ID для регистрации</string>
-    <string name="id">Номер личного ID</string>
+    <string name="id">ID номер</string>
     <string name="enter_your_id">Введите ваш ID</string>
     <string name="next">Далее</string>
     <string name="copyright">© 2020 BAQYLA. Все права защищены.</string>
     <string name="error">Ошибка</string>
-    <string name="error_id">Неправильный ID</string>
+    <string name="error_id">Вы ввели неправильный айди</string>
     <string name="error_login">Неправильный логин или пароль</string>
     <string name="enter_login_and_password">Введите ваш логин и пароль для входа в аккаунт.</string>
     <string name="your_login">Ваш логин</string>
-    <string name="id2">Введите номер своего ID</string>
-    <string name="password">Ваш пароль</string>
-    <string name="password2">Введите пароль</string>
+    <string name="password">Пароль</string>
     <string name="login">Войти</string>
     <string name="create_password">Пожалуйста придумайте пароль для своей учетной записи</string>
-    <string name="new_password">Создайте новый пароль</string>
     <string name="enter_password">Введите пароль</string>
-    <string name="confirm_new_password">Подвердите новый пароль</string>
-    <string name="enter_again">Введите повторно</string>
+    <string name="enter_again">Повторите пароль</string>
     <string name="back">Назад</string>
+    <string name="back2">назад</string>
     <string name="change_id">Сменить ID</string>
     <string name="info_child">Сведения о ребенке</string>
     <string name="choose_subject">Выберите занятие чтобы посмотреть данные</string>
     <string name="attendance_percent">Процент посещаемости занятий за все время</string>
-    <string name="visited_lessons">Посещенных занятий за последний месяц</string>
-    <string name="missed_lessons">Пропущенных занятий за последний месяц</string>
+    <string name="visited_lessons">Посещенных занятий за последний <font color='#00DEB1'>месяц</font></string>
+    <string name="missed_lessons">Пропущенных занятий за последний <font color='#00DEB1'>месяц</font></string>
     <string name="select_reason">Выберите причину и предмет по которому хотите сообщить об отсутсвие</string>
     <string name="choose_subject2">Выберите предмет</string>
     <string name="additional_field">Поле для дополнительного ввода текста</string>
@@ -58,4 +55,15 @@
     <string name="logout_text">Вы действительно хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="hide">Скрыть</string>
+    <string name="on_boarding_first_title">Вы сможете с легкостью отслеживать время пребывание вашего ребенка</string>
+    <string name="on_boarding_first_description">Вам придет уведомление о посещении</string>
+    <string name="on_boarding_second_title">Вы сможете быть уверенными в безопасности вашего ребенка</string>
+    <string name="on_boarding_second_description">Face ID c отсканированными данными</string>
+    <string name="on_boarding_third_title">Вы сможете отслеживать успеваемость, расписание и количество посещенных уроков вашего ребенка</string>
+    <string name="on_boarding_third_description">Расписание с календарем занятий</string>
+    <string name="exit">выйти из аккаунта</string>
+    <string name="notification">Уведомление</string>
+    <string name="you_dont_have_notifications">У вас нет текущих уведомлений</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>

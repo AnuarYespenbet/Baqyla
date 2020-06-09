@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Lesson(
     @SerializedName("datetime") val datetime: String,
+    @SerializedName("endtime") val endtime: String,
     @SerializedName("description") val description: String,
     @SerializedName("id") val id: Int,
     @SerializedName("subject") val subject: Subject,
