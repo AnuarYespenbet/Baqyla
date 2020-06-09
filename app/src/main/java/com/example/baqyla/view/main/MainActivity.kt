@@ -16,11 +16,16 @@ import com.example.baqyla.data.model.Child
 import com.example.baqyla.utils.Status
 import com.example.baqyla.utils.toast
 import com.example.baqyla.view.entry.EntryActivity
+import com.example.baqyla.view.notification.NotificationsActivity
+import com.example.baqyla.view.ui.OnBackClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), ChildrenAdapter.OnChildSelectedListener {
+class MainActivity : AppCompatActivity(), ChildrenAdapter.OnChildSelectedListener,
+    OnBackClickListener {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: ChildrenAdapter
 
@@ -35,17 +40,20 @@ class MainActivity : AppCompatActivity(), ChildrenAdapter.OnChildSelectedListene
         val navController = host.navController
         setUpBottomNav(navController)
 
+
         menu.setOnClickListener {
             drawer_layout.open()
         }
 
-        back_text_view.setOnClickListener {
-            drawer_layout.closeDrawers()
+        notifications.setOnClickListener {
+            startActivity(Intent(this, NotificationsActivity::class.java))
         }
 
         log_out.setOnClickListener {
             showDialog()
         }
+
+        nav_view_toolbar.setOnBackClickListener(this)
 
         adapter = ChildrenAdapter(mainViewModel.children)
         adapter.setOnChildSelectedListener(this)
@@ -91,5 +99,9 @@ class MainActivity : AppCompatActivity(), ChildrenAdapter.OnChildSelectedListene
         drawer_layout.close()
         bottom_nav_view.selectedItemId = bottom_nav_view.selectedItemId
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onBackClick() {
+        drawer_layout.close()
     }
 }

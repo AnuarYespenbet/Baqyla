@@ -63,4 +63,7 @@
     <string name="on_boarding_third_title">Вы сможете отслеживать успеваемость, расписание и количество посещенных уроков вашего ребенка</string>
     <string name="on_boarding_third_description">Расписание с календарем занятий</string>
     <string name="exit">выйти из аккаунта</string>
+    <string name="notification">Уведомление</string>
+    <string name="you_dont_have_notifications">У вас нет текущих уведомлений</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>

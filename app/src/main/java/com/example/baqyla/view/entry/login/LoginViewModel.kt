@@ -10,8 +10,10 @@ import com.example.baqyla.data.model.User
 import com.example.baqyla.data.repository.UserRepository
 import com.example.baqyla.utils.Event
 import com.example.baqyla.view.base.BaseViewModel
+import com.google.firebase.messaging.FirebaseMessaging
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class LoginViewModel : BaseViewModel() {
     val onBoardingCompleted = LocalStore().get(LocalStoreBooleanType.ON_BOARDING_COMPLETED) ?: false
@@ -40,6 +42,18 @@ class LoginViewModel : BaseViewModel() {
 
     fun saveUser(user: User) {
         LocalStore().save(user, LocalStoreObjectType.CURRENT_USER)
+
+    }
+
+    fun subscribeToFirebaseNotification() {
+        FirebaseMessaging.getInstance().subscribeToTopic(id!!)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Timber.e("task is successful")
+                } else {
+                    Timber.e(task.exception)
+                }
+            }
     }
 
     fun changeId() {

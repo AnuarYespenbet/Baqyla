@@ -91,6 +91,7 @@ class LoginFragment : Fragment(), TextWatcher {
 
     private fun onSuccess(user: User) {
         loginViewModel.saveUser(user)
+        loginViewModel.subscribeToFirebaseNotification()
         if (loginViewModel.onBoardingCompleted) {
             startActivity(Intent(requireContext(), MainActivity::class.java))
         } else {
