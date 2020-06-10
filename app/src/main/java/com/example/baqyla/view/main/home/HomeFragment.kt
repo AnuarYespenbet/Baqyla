@@ -72,10 +72,13 @@ class HomeFragment : Fragment() {
 
     private fun onSuccess(statistic: Statistic?) {
         this.statistic = statistic
-        val attendancePercentText = "${statistic?.comePercent}%"
+        val come = statistic?.come?.toDouble() ?: 0.0
+        val dontCome = statistic?.dontCome?.toDouble() ?: 0.0
+        val attendancePercent = ((come / (come + dontCome)) * 100).toInt()
+        val attendancePercentText = "$attendancePercent%"
         attendance_percent.text = attendancePercentText
         attendance_text.text = getString(R.string.attendance_percent)
-        progress_bar.progress = statistic?.comePercent ?: 100
+        progress_bar.progress = attendancePercent
         setTabLayout()
     }
 
